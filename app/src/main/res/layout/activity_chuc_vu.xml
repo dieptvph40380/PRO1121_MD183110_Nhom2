@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#673AB7"
+    tools:context=".ChucVu">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/logoshop" />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="#F2B88F"
+        android:text="Ăn Vặt Poly" />
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="#F2B88F"
+        android:text="Mời chọn chức vụ để sử dụng hệ thống" />
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/btnNhanVien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#58A94A"
+            android:backgroundTint="#F3BA8D"
+            android:text="Nhân Viên"/>
+        <Button
+            android:id="@+id/btnKhachHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#58A94A"
+            android:backgroundTint="#F3BA8D"
+            android:text="Khách Hàng"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnAdmin"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#58A94A"
+        android:backgroundTint="#F3BA8D"
+        android:text="Admin / Chủ shop"/>
+</LinearLayout>
