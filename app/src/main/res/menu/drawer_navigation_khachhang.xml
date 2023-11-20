@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+
+        android:id="@+id/khsp"
+        android:title="Xem danh sach san pham"/>
+    <item
+
+        android:id="@+id/khloaisp"
+        android:title="Top san pham ban chay"/>
+    <item
+
+        android:id="@+id/khgh"
+        android:title="Xem gio hang"/>
+    <item
+
+        android:id="@+id/khdh"
+        android:title="Xem don hang"/>
+
+
+
+
+    <group android:checkableBehavior="single">
+        <item android:title="Tai khoan"
+
+            android:id="@+id/tkkh">
+            <menu>
+
+                <item
+
+                    android:id="@+id/khPassword"
+                    android:title="Đổi mật khẩu"/>
+                <item
+
+                    android:id="@+id/khdangxuat"
+                    android:title="Đang xuat"/>
+
+            </menu>
+        </item>
+    </group>
