@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
-    <item
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/QLSanPham_NV"
+        android:title="Quản lý sản phẩm"
+        />
 
-        android:id="@+id/nvsp"
-        android:title="Quan ly san pham"/>
-    <item
+    <item android:id="@+id/QLLoaiSanPham_NV"
+        android:title="Quản lý loại sản phẩm "
+        />
+    <item android:id="@+id/QLKhachHang_NV"
+        android:title="Quản lý khách hàng "
+        />
+    <item android:id="@+id/QLHoaDon_NV"
+        android:title="Quản lý hóa đơn "
+        />
 
-        android:id="@+id/nvloaisp"
-        android:title="Quản lý loai san pham"/>
-
-    <item
-
-        android:id="@+id/nvkh"
-        android:title="Quản lý khach hang"/>
-    <item
-
-        android:id="@+id/nvdh"
-        android:title="Quản lý don hang"/>
-
-                <item
-
-                    android:id="@+id/nvdangxuat"
-                    android:title="Dang xuat"/>
-
-
+    <item android:title="Tài khoản">
+        <menu>
+            <item android:id="@+id/LogOut_NV"
+                android:title="Đăng xuất"
+                />
+        </menu>
+    </item>
+</menu>
