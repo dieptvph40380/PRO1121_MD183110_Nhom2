@@ -79,14 +79,14 @@ public class DangNhap extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             if (task.getResult().isEmpty()) {
-                                Toast.makeText(DangNhap.this, "sai ten dang nhap", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DangNhap.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
                             }else {
                                 String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("MatKhau");
                                 if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau)) {
                                     // Mật khẩu đúng
                                     Toast.makeText(DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     rememberUser(TenDN, MatKhau, chkLuuMK.isChecked());
-                                    Intent i = new Intent(DangNhap.this, DangKy.class);
+                                    Intent i = new Intent(DangNhap.this, Menu_Admin.class);
                                     startActivity(i);
                                 } else {
                                     // Mật khẩu không đúng
@@ -94,7 +94,7 @@ public class DangNhap extends AppCompatActivity {
                                 }
                             }
                         }else {
-                            Toast.makeText(DangNhap.this, "loi khi kiem tra", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DangNhap.this, "Lỗi khi kiểm tra", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

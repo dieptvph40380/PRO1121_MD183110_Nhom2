@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/QLSanPham_AD"
+        android:title="Quản lý sản phẩm"
+        />
+
+    <item android:id="@+id/QLLoaiSanPham_AD"
+        android:title="Quản lý loại sản phẩm "
+        />
+
+    <item android:id="@+id/QLNhanVien_AD"
+        android:title="Quản lý nhân viên "
+       />
+
+    <item android:id="@+id/QLKhachHang_AD"
+        android:title="Quản lý khách hàng "
+        />
+    <item android:id="@+id/QLHoaDon_AD"
+        android:title="Quản lý hóa đơn "
+        />
+
+    <item android:title="Thống kê">
+        <menu>
+            <item android:id="@+id/Top10_AD"
+                android:title="Top 10 sản phẩm bán nhiều nhất"
+                />
+
+            <item android:id="@+id/DoanhThu_AD"
+                android:title="Doanh thu"
+                />
+        </menu>
+    </item>
+    <item android:title="Tài khoản">
+        <menu>
+            <item android:id="@+id/DoiMk_AD"
+                android:title="Đổi mật khẩu "
+                />
+            <item android:id="@+id/LogOut_AD"
+                android:title="Đăng xuất"
+                />
+        </menu>
+    </item>
+</menu>
