@@ -22,7 +22,7 @@
         android:layout_marginTop="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edUserName"
+            android:id="@+id/edtDN_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập" />
@@ -34,7 +34,7 @@
         android:layout_marginTop="7dp">
 
         <com.google.android.material.textfield.TextInputEditText
-
+            android:id="@+id/edtUserName_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Họ và tên"
@@ -49,6 +49,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSDT_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Số điện thoại"
@@ -63,7 +64,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPassword"
+            android:id="@+id/edtPassword_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
@@ -78,7 +79,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-
+            android:id="@+id/edtePassword_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=" Nhập lại mật khẩu"
@@ -93,7 +94,7 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/btnDangNhap_NV"
+            android:id="@+id/btnDangKy_KH"
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:textSize="20sp"
@@ -101,7 +102,7 @@
             android:text="Đăng ký"
             />
         <Button
-            android:id="@+id/btnHuy_NV"
+            android:id="@+id/btnHuy_KH"
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:textSize="20sp"
