@@ -20,7 +20,7 @@
         android:layout_marginTop="70dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edUserName"
+            android:id="@+id/edtDN_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập" />
@@ -33,7 +33,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPassword"
+            android:id="@+id/edtMK_KH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
@@ -43,7 +43,7 @@
 
     <CheckBox
         android:layout_gravity="start"
-        android:id="@+id/chkRememberPass"
+        android:id="@+id/chkLuuMK_KH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
