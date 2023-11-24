@@ -25,19 +25,19 @@
             android:name=".DangNhap_NhanVien"
             android:exported="false" />
         <activity
-            android:name=".DangKy_KhachHang"
+            android:name=".DangNhap_KhachHang"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".DangKy"
             android:exported="false" />
         <activity
-            android:name=".DangNhap_KhachHang"
+            android:name=".DangKy_KhachHang"
             android:exported="false" />
         <activity
             android:name=".ChucVu"

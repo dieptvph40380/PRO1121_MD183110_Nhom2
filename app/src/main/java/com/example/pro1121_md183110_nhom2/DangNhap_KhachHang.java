@@ -33,27 +33,19 @@ public class DangNhap_KhachHang extends AppCompatActivity {
         edtMK_KH = findViewById(R.id.edtMK_KH);
         btnDangNhap_KH = findViewById(R.id.btnDangNhap_KH);
         btnDangKy_KH = findViewById(R.id.btnDangKy_KH);
-        btnHuy_KH = findViewById(R.id.btnHuy_KH);
+        chkRememberPass=findViewById(R.id.chkLuuMK_KH);
         SharedPreferences pref=getSharedPreferences("USER_FILE_KH",MODE_PRIVATE);
-        String user = pref.getString("USERNAME_KH","");
-        String pass= pref.getString("PASSWORD_KH","");
-        Boolean rem = pref.getBoolean("REMEMBER_KH",false);
+        String user_kh = pref.getString("USERNAME_KH","");
+        String pass_kh = pref.getString("PASSWORD_KH","");
+        Boolean rem_kh = pref.getBoolean("REMEMBER_KH",false);
 
 
-        edtDN_KH.setText(user);
-        edtMK_KH .setText(pass);
-        chkRememberPass.setChecked(rem);
+        edtDN_KH.setText(user_kh);
+        edtMK_KH .setText(pass_kh);
+        chkRememberPass.setChecked(rem_kh);
         edtDN_KH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { checkLoginf();
-
-            }
-        });
-        btnHuy_KH.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(DangNhap_KhachHang.this,DangKy_KhachHang.class);
-                startActivity(intent);
 
             }
         });
@@ -90,17 +82,17 @@ public class DangNhap_KhachHang extends AppCompatActivity {
                 });
     }
 
-    public void rememberUser(String u , String p ,boolean status){
+    public void rememberUser(String ukh , String pkh ,boolean statuskh){
         SharedPreferences pef =getSharedPreferences("USER_FILE_KH",MODE_PRIVATE);
         SharedPreferences.Editor edit= pef.edit();
-        if(!status){
+        if(!statuskh){
             // xóa tình trạng lưu trữ trước đó
             edit.clear();
         }else {
             //Lưu trữ dữ liệu
-            edit.putString("USERNAME_KH",u);
-            edit.putString("PASSWORD_KH",p);
-            edit.putBoolean("REMEMBER_KH",status);
+            edit.putString("USERNAME_KH",ukh);
+            edit.putString("PASSWORD_KH",pkh);
+            edit.putBoolean("REMEMBER_KH",statuskh);
         }
         //Lưu toàn bộ
         edit.commit();
