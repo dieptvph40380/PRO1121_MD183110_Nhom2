@@ -67,10 +67,10 @@ public class Fragment_QL_NhanVien extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment__q_l__nhan_vien, container, false);
+
         fab=view.findViewById(R.id.floatAdd_NV);
         rcv=view.findViewById(R.id.recycler_NV);
         db=FirebaseFirestore.getInstance();
-
         ListenFirebaseFirestore();
 
         adapter = new NhanVienAdapter(nvList,getContext(),db);
