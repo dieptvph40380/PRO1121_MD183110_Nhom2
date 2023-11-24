@@ -38,7 +38,6 @@ public class DangKy extends AppCompatActivity {
         edtMK=findViewById(R.id.edtMK);
         edtReMK=findViewById(R.id.edtReMK);
         btnDK=findViewById(R.id.btnDangKy);
-        btnHuy=findViewById(R.id.btnHuy);
 
         btnDK.setOnClickListener(view -> {
             String tenDN=edtDN.getText().toString();
@@ -54,7 +53,7 @@ public class DangKy extends AppCompatActivity {
                                             String tenDN=edtDN.getText().toString();
                                             String HoTen=edtHT.getText().toString();
                                             String MK=edtMK.getText().toString();
-
+                                            
 //                                            String ID=UUID.randomUUID().toString();
                                             Admin admin = new Admin(tenDN,HoTen,MK);
                                             HashMap<String, Object> mapAdmin = admin.convertHashMap();

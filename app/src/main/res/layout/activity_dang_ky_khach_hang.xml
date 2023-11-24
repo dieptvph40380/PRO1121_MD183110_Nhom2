@@ -87,27 +87,19 @@
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnDangKy_KH"
+
+            android:layout_marginTop="20dp"
+            android:id="@+id/btnDangNhap_NV"
+
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:textSize="20sp"
+            android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:text="Đăng ký"
             />
-        <Button
-            android:id="@+id/btnHuy_KH"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:textSize="20sp"
-            android:text="Hủy "
-            />
-    </LinearLayout>
 
 </LinearLayout>
