@@ -19,7 +19,7 @@
         android:layout_marginTop="70dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edUserName"
+            android:id="@+id/edtDN_NV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên đăng nhập" />
@@ -32,7 +32,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPassword"
+            android:id="@+id/edtMK_NV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mật khẩu"
@@ -42,33 +42,21 @@
 
     <CheckBox
         android:layout_gravity="start"
-        android:id="@+id/chkRememberPass"
+        android:id="@+id/chkLuuMK_NV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Lưu mật khẩu" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
         <Button
+            android:layout_marginTop="25dp"
             android:id="@+id/btnDangNhap_NV"
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:textSize="20sp"
+            android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:text="Đăng nhập"
             />
-        <Button
-            android:id="@+id/btnHuy_NV"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
-            android:textSize="20sp"
-            android:text="Hủy "
-            />
-    </LinearLayout>
+
 
 </LinearLayout>

@@ -71,13 +71,6 @@
             android:text="Đăng ký "
             />
     </LinearLayout>
-    <Button
-        android:layout_marginTop="20dp"
-        android:id="@+id/btnHuy"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:textSize="20sp"
-        android:text="Hủy "
-        />
+
 
 </LinearLayout>

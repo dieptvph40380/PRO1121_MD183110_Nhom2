@@ -33,7 +33,6 @@ public class DangNhap extends AppCompatActivity {
         edtMK=findViewById(R.id.edtMK);
         btnDK=findViewById(R.id.btnDangKy);
         btnDN=findViewById(R.id.btnDangNhap);
-        btnHuy=findViewById(R.id.btnHuy);
         chkLuuMK=findViewById(R.id.chkLuuMK);
 
         SharedPreferences pref=getSharedPreferences("USER_FILE",MODE_PRIVATE);
@@ -52,13 +51,13 @@ public class DangNhap extends AppCompatActivity {
             }
         });
 
-        btnHuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edtDN.setText("");
-                edtMK.setText("");
-            }
-        });
+//        btnHuy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                edtDN.setText("");
+//                edtMK.setText("");
+//            }
+//        });
         btnDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
