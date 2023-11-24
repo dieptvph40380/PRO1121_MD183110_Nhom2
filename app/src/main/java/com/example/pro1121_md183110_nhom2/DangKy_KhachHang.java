@@ -39,7 +39,6 @@ public class DangKy_KhachHang extends AppCompatActivity {
         edtPassword_KH = findViewById(R.id.edtPassword_KH);
         edtePassword_KH = findViewById(R.id.edtePassword_KH);
         btnDangKy_KH = findViewById(R.id.btnDangKy_KH);
-        btnHuy_KH = findViewById(R.id.btnHuy_KH);
 
         btnDangKy_KH.setOnClickListener(view -> {
             String tenDNKH = edtDN_KH.getText().toString();
@@ -89,14 +88,6 @@ public class DangKy_KhachHang extends AppCompatActivity {
                             }
                         }
                     });
-        });
-
-        btnHuy_KH.setOnClickListener(view -> {
-            edtDN_KH.setText("");
-            edtSDT_KH.setText("");
-            edtUserName_KH.setText("");
-            edtePassword_KH.setText("");
-            edtPassword_KH.setText("");
         });
 
     }
