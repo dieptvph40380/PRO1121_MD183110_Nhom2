@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/tv_Ten_NV"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:text="Họ và tên"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
