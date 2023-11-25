@@ -166,7 +166,7 @@ public class Fragment_QL_NhanVien extends Fragment {
                                         NhanVien nv = new NhanVien(MaNV,TenNV,SDT,User,Pass);
                                         HashMap<String, Object> mapNV = nv.convertHashMap();
                                         db.collection("NhanVien")
-                                                .document(User)
+                                                .document(MaNV)
                                                 .set(mapNV)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
