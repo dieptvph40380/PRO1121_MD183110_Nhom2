@@ -25,7 +25,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvkh"
+                android:id="@+id/tvMa_KH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ma khách hàng"
@@ -50,7 +50,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvTenKH"
+                android:id="@+id/tvHoTen_KH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Họ và tên"
@@ -75,7 +75,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvhoten"
+                android:id="@+id/tvsdt_KH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SDT"
@@ -101,7 +101,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/pass"
+                android:id="@+id/tenDN_KH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tên đăng nhập"
@@ -125,7 +125,7 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvsdt"
+                android:id="@+id/tvMK_KH"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mật khẩu"
