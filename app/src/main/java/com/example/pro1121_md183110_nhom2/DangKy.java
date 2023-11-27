@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class DangKy extends AppCompatActivity {
-    Button btnDK,btnHuy;
+    Button btnDK;
     FirebaseFirestore database;
 
     EditText edtDN,edtHT,edtMK,edtReMK;
@@ -87,12 +87,7 @@ public class DangKy extends AppCompatActivity {
                             });
         });
 
-        btnHuy.setOnClickListener(view->{
-            edtDN.setText("");
-            edtHT.setText("");
-            edtReMK.setText("");
-            edtMK.setText("");
-        });
+
 
     }
     public int checkMK(){
