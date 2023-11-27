@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class KhachHang {
     private String MaKH;
-    private String SDT;
+    private String SDTKH;
     private String HoVaTen;
     private String TenDN;
     private String MatKhau;
@@ -13,8 +13,8 @@ public class KhachHang {
     public HashMap<String, Object> convertHashMap() {
         HashMap<String, Object> KhachHang = new HashMap<>();
         KhachHang.put("MaKH", MaKH);
-        KhachHang.put("SDT", SDT);
-        KhachHang.put("HoVaten", HoVaTen);
+        KhachHang.put("SDTKH", SDTKH);
+        KhachHang.put("HoVaTen", HoVaTen);
         KhachHang.put("TenDN", TenDN);
         KhachHang.put("MatKhau", MatKhau);
         return KhachHang;
@@ -23,9 +23,9 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String SDT, String hoVaTen, String tenDN, String matKhau) {
+    public KhachHang(String maKH, String SDTKH, String hoVaTen, String tenDN, String matKhau) {
         MaKH = maKH;
-        this.SDT = SDT;
+        this.SDTKH = SDTKH;
         HoVaTen = hoVaTen;
         TenDN = tenDN;
         MatKhau = matKhau;
@@ -39,12 +39,12 @@ public class KhachHang {
         MaKH = maKH;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSDTKH() {
+        return SDTKH;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSDTKH(String SDTKH) {
+        this.SDTKH = SDTKH;
     }
 
     public String getHoVaTen() {
@@ -71,4 +71,5 @@ public class KhachHang {
         MatKhau = matKhau;
     }
 }
+
 

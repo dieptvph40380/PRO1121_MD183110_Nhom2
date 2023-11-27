@@ -49,6 +49,14 @@ public class DangNhap_KhachHang extends AppCompatActivity {
 
             }
         });
+        btnHuy_KH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(DangNhap_KhachHang.this,DangKy_KhachHang.class);
+                startActivity(intent);
+
+            }
+        });
     }
     public void checkLoginf(){
         String TenDN= edtDN_KH.getText().toString().trim();

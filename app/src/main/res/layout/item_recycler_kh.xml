@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,20 +22,22 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/type2"
+                android:src="@drawable/openbook"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvkh"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvHoTen_KH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ma khách hàng"
+                android:text="Họ và tên"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="16dp"
+                android:textSize="25dp"
                 android:layout_gravity="center"/>
+
+
 
         </LinearLayout>
 
@@ -50,39 +54,14 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvTenKH"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Họ và tên"
-                android:layout_margin="5dp"
-                android:textStyle="bold"
-                android:textColor="#8a97dd"
-                android:textSize="16dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/newborn"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:id="@+id/tvhoten"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvsdt_KH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SDT"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="16dp"
+                android:textSize="25dp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -96,19 +75,19 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/flashsale"
+                android:src="@drawable/openbook"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/pass"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvTenDN_KH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên đăng nhập"
+                android:text="Tên DN"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="16dp"
+                android:textSize="25dp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -120,19 +99,19 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/type2"
+                android:src="@drawable/openbook"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"/>
 
             <TextView
-                android:id="@+id/tvsdt"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvMK_KH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mật khẩu"
                 android:layout_margin="5dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="16dp"
+                android:textSize="25dp"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
