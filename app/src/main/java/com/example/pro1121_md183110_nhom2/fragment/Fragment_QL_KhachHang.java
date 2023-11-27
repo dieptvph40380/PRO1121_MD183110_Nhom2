@@ -137,9 +137,9 @@ public class Fragment_QL_KhachHang extends Fragment {
         btnthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String User=userkh.getText().toString();
+                String TenDN=userkh.getText().toString();
                 db_KH.collection("KhachHang")
-                        .whereEqualTo("User", User)
+                        .whereEqualTo("TenDN", TenDN)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -149,11 +149,11 @@ public class Fragment_QL_KhachHang extends Fragment {
                                     if (task.getResult().isEmpty()) {
                                         String TenKH=tenkh.getText().toString();
                                         String SDTKH=sdtkh.getText().toString();
-                                        String UserKH=userkh.getText().toString();
-                                        String PassKH=passkh.getText().toString();
+                                        String TenDN=userkh.getText().toString();
+                                        String MatKhau=passkh.getText().toString();
                                         String MaKH= UUID.randomUUID().toString();
 
-                                        KhachHang kh = new KhachHang(MaKH,TenKH,SDTKH,UserKH,PassKH);
+                                        KhachHang kh = new KhachHang(MaKH,SDTKH,TenKH,TenDN,MatKhau);
                                         HashMap<String, Object> mapKH= kh.convertHashMap();
                                         db_KH.collection("KhachHang")
                                                 .document(MaKH)

@@ -47,14 +47,14 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.View
     public KhachHangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.item_recycler_kh, parent, false);
-        return new KhachHangAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull KhachHangAdapter.ViewHolder holder, int i) {
         String[] makh = {list.get(holder.getAdapterPosition()).getMaKH()};
         holder.tenkh.setText(list.get(i).getHoVaTen());
-        holder.sdtkh.setText(list.get(i).getSDT());
+        holder.sdtkh.setText(list.get(i).getSDTKH());
         holder.userkh.setText(list.get(i).getTenDN());
         holder.passkh.setText(list.get(i).getMatKhau());
 
@@ -111,11 +111,11 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tenkh = itemView.findViewById(R.id.tvMa_KH);
-            sdtkh = itemView.findViewById(R.id.tvsdt_KH);
-            userkh = itemView.findViewById(R.id.tvHoTen_KH);
-            passkh = itemView.findViewById(R.id.tvMK_KH);
 
+            tenkh = itemView.findViewById(R.id.tvHoTen_KH);
+            sdtkh = itemView.findViewById(R.id.tvsdt_KH);
+            userkh = itemView.findViewById(R.id.tvTenDN_KH);
+            passkh = itemView.findViewById(R.id.tvMK_KH);
             imgxoa = itemView.findViewById(R.id.btnRemove);
 
         }
