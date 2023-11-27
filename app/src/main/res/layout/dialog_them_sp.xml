@@ -12,23 +12,25 @@
         android:layout_height="wrap_content"
         android:textColor="#EF1C1C"
         android:textSize="25sp"
-        android:text="Thêm sản phẩm mới"/>
+        android:text="Thêm sản phẩm"/>
     <EditText
+        android:id="@+id/edt_Ten_SP"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập tên sản phẩm"/>
     <EditText
-
+        android:id="@+id/edt_Gia_SP"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập giá"/>
     <Spinner
+        android:id="@+id/spn_TenLoai"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spn_TenLoai"/>
+        />
     <TextView
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
@@ -37,16 +39,19 @@
         android:textSize="25sp"
         android:text="Thêm chi tiết"/>
     <EditText
+        android:id="@+id/edt_Klg_SP"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập khối lượng"/>
     <EditText
+        android:id="@+id/edt_LgCalo_SP"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập lượng kalo"/>
     <EditText
+        android:id="@+id/edt_TP_SP"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

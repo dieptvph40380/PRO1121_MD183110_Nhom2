@@ -143,6 +143,7 @@ public class Fragment_QL_NhanVien extends Fragment {
         pass = dialog.findViewById(R.id.edt_Pass_NV);
         btnthem = dialog.findViewById(R.id.btn_Them_NV);
         btnhuy = dialog.findViewById(R.id.btn_HuyT_NV);
+        //adad
 
         btnthem.setOnClickListener(new View.OnClickListener() {
             @Override
