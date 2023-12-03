@@ -176,7 +176,7 @@ openDialog(context,0);
                                    // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                    if (task.getResult().isEmpty()) {
                                        String TenSP=tensp.getText().toString();
-                                       int Gia=Integer.parseInt(giasp.getText().toString());
+                                       int Gia= Integer.parseInt(giasp.getText().toString());
                                        String KhoiLuong=khoiluong.getText().toString();
                                        String LuongCalo=luongcalo.getText().toString();
                                        String ThanhPhan=thanhphan.getText().toString();
