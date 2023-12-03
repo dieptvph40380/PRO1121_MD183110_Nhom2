@@ -56,5 +56,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập thành phần"/>
-
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/btn_Sua_SP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Sửa"/>
+        <Button
+            android:id="@+id/btn_Huy_SP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:text="Hủy"/>
+    </LinearLayout>
 </LinearLayout>
