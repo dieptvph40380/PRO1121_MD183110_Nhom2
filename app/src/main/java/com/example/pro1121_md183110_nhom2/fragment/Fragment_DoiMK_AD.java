@@ -73,7 +73,7 @@ public class Fragment_DoiMK_AD extends Fragment {
     }
 
 
-
+//aa
 //    private void ListenFirebaseFirestore(){
 //        database.collection("NhanVien").addSnapshotListener(new EventListener<QuerySnapshot>() {
 //            @Override
