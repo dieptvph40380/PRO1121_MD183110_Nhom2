@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -30,14 +31,17 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -47,16 +51,17 @@ public class Fragment_QL_SanPham extends Fragment {
     RecyclerView rcv;
     FloatingActionButton fab;
     Dialog dialog;
-    EditText tensp, giasp, thanhphan,luongcalo , khoiluong;
+    EditText maloai,tenloai,soluong,tensp, giasp, thanhphan,luongcalo , khoiluong;
     Spinner spnloai;
-    ArrayList<String> list = new ArrayList<>();
-    ArrayList<SanPham> spList = new ArrayList<>();
+    List<SanPham> list= new ArrayList<>();
+
     SanPhamAdapter adapter;
     Context context;
+    List<String> loaiSanPhamList= new ArrayList<>();
 
     Button btnthem,btnhuy;
-    NhanVienAdapter nhanVienAdapter;
-    ArrayList<NhanVien> nvList = new ArrayList<>();
+    SanPhamAdapter sanPhamAdapter;
+
 
     FirebaseFirestore database;
 
@@ -77,10 +82,10 @@ public class Fragment_QL_SanPham extends Fragment {
         db=FirebaseFirestore.getInstance();
         ListenFirebaseFirestore();
 
-        nhanVienAdapter= new NhanVienAdapter(nvList,getContext(),db);
+       // nhanVienAdapter= new NhanVienAdapter(nvList,getContext(),db);
 
 
-        adapter = new SanPhamAdapter(spList,getContext(),db);
+        adapter = new SanPhamAdapter(list,getContext(),db);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
@@ -89,7 +94,7 @@ public class Fragment_QL_SanPham extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+openDialog(context,0);
             }
         });
 
@@ -110,19 +115,19 @@ public class Fragment_QL_SanPham extends Fragment {
                         switch (dc.getType()){
                             case ADDED:{
                                 SanPham newU = dc.getDocument().toObject(SanPham.class);
-                                spList.add(newU);
-                                adapter.notifyItemInserted(spList.size() - 1);
+                                list.add(newU);
+                                adapter.notifyItemInserted(list.size() - 1);
                                 break;
                             }
                             case MODIFIED:{
                                 SanPham update = dc.getDocument().toObject(SanPham.class);
                                 if(dc.getOldIndex() == dc.getNewIndex()){
-                                    spList.set(dc.getOldIndex(), update);
+                                    list.set(dc.getOldIndex(), update);
                                     adapter.notifyItemChanged(dc.getOldIndex());
 
                                 } else {
-                                    spList.remove(dc.getOldIndex());
-                                    spList.add(update);
+                                    list.remove(dc.getOldIndex());
+                                    list.add(update);
                                     adapter.notifyItemMoved(dc.getOldIndex(), dc.getNewIndex());
 
                                 }
@@ -130,7 +135,7 @@ public class Fragment_QL_SanPham extends Fragment {
                             }
                             case REMOVED:{
                                 dc.getDocument().toObject(SanPham.class);
-                                spList.remove(dc.getOldIndex());
+                                list.remove(dc.getOldIndex());
                                 adapter.notifyItemRemoved(dc.getOldIndex());
                                 break;
                             }
@@ -141,72 +146,106 @@ public class Fragment_QL_SanPham extends Fragment {
         });
     }
 
-    public void openDialog(final Context context, final int type){
+    public void openDialog(final Context context,  int position){
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_them_sp);
 
-        tensp = dialog.findViewById(R.id.edt_TenNV);
-        giasp = dialog.findViewById(R.id.edt_SDT_NV);
+        tensp = dialog.findViewById(R.id.edt_Ten_SP);
+        giasp = dialog.findViewById(R.id.edt_Gia_SP);
         spnloai = dialog.findViewById(R.id.spn_TenLoai);
 
-        khoiluong = dialog.findViewById(R.id.edt_User_NV);
-        luongcalo = dialog.findViewById(R.id.edt_Pass_NV);
-        thanhphan = dialog.findViewById(R.id.edt_Pass_NV);
+        khoiluong = dialog.findViewById(R.id.edt_Klg_SP);
+        luongcalo = dialog.findViewById(R.id.edt_LgCalo_SP);
+        thanhphan = dialog.findViewById(R.id.edt_TP_SP);
 
-        btnthem = dialog.findViewById(R.id.btn_Them_NV);
-        btnhuy = dialog.findViewById(R.id.btn_HuyT_NV);
+        btnthem = dialog.findViewById(R.id.btn_Them_SP);
+        btnhuy = dialog.findViewById(R.id.btn_HuyT_SP);
 
 
-//        btnthem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String User=user.getText().toString();
-//                db.collection("NhanVien")
-//                        .whereEqualTo("User", User)
-//                        .get()
-//                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                if (task.isSuccessful()) {
-//                                    // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
-//                                    if (task.getResult().isEmpty()) {
-//                                        String TenNV=tennv.getText().toString();
-//                                        String SDT=sdt.getText().toString();
-//                                        String User=user.getText().toString();
-//                                        String Pass=pass.getText().toString();
-//                                        String MaNV= UUID.randomUUID().toString();
-//
-//                                        NhanVien nv = new NhanVien(MaNV,TenNV,SDT,User,Pass);
-//                                        HashMap<String, Object> mapNV = nv.convertHashMap();
-//                                        db.collection("NhanVien")
-//                                                .document(MaNV)
-//                                                .set(mapNV)
-//                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                                    @Override
-//                                                    public void onSuccess(Void aVoid) {
-//                                                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-//                                                    }
-//                                                })
-//                                                .addOnFailureListener(new OnFailureListener() {
-//                                                    @Override
-//                                                    public void onFailure(@NonNull Exception e) {
-//                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
-//
-//                                                    }
-//                                                });
-//                                    } else {
-//                                        // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
-//                                        Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                } else {
-//                                    // Xử lý khi truy vấn không thành công
-//                                    Toast.makeText(getContext(), "Lỗi khi kiểm tra tên đăng nhập.", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        });
-//                dialog.dismiss();
-//            }
-//        });
+       btnthem.setOnClickListener(new View.OnClickListener() {
+            @Override
+         public void onClick(View v) {
+            String TenSP=tensp.getText().toString();
+               db.collection("SanPham")
+                        .whereEqualTo("TenSP", TenSP)
+                       .get()
+                      .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                           @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                               if (task.isSuccessful()) {
+                                   // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
+                                   if (task.getResult().isEmpty()) {
+                                       String TenSP=tensp.getText().toString();
+                                       int Gia=Integer.parseInt(giasp.getText().toString());
+                                       String KhoiLuong=khoiluong.getText().toString();
+                                       String LuongCalo=luongcalo.getText().toString();
+                                       String ThanhPhan=thanhphan.getText().toString();
+                                       String MaLoai="maloai.getText().toString();";
+                                       String TenLoai="tenloai.getText().toString();";
+                                       int SoLuong=2;
+                                    //   String maSP, String tenSP, int gia, String khoiLuong, String luongCalo, String thanhPhan, String maLoai, String tenLoai, int soLuong)
+                                       String MaSP= UUID.randomUUID().toString();
+                                       FirebaseFirestore database = FirebaseFirestore.getInstance();
+                                       CollectionReference loaiSachCollection = database.collection("LoaiSanPham");
+
+                                       loaiSachCollection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                           @Override
+                                           public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                               ArrayList<String> loaisachs = new ArrayList<>();
+                                               int spnIndex = 0;
+
+                                               for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                                   LoaiSanPham loaiSanPham = document.toObject(LoaiSanPham.class);
+                                                   loaisachs.add(loaiSanPham.getTenLSP());
+
+                                                   if (loaiSanPham.getMaLSP().equals(list.get(position).getMaLoai())) {
+                                                       spnIndex = loaisachs.indexOf(loaiSanPham.getMaLSP());
+                                                   }
+                                               }
+
+                                               spnloai.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, loaisachs));
+                                               spnloai.setSelection(spnIndex);
+                                           }
+                                       }).addOnFailureListener(new OnFailureListener() {
+                                           @Override
+                                           public void onFailure(@NonNull Exception e) {
+                                               Toast.makeText(context, "lỗi", Toast.LENGTH_SHORT).show();
+                                           }
+                                       });
+                                       //     spnloai.setSelection(loaiSanPhamList.indexOf(sanPham.getMaLoai()));
+                                       spnloai.setSelection(loaiSanPhamList.indexOf(list.get(position).getMaLoai()));
+                                        SanPham sp = new SanPham(MaSP,TenSP,Gia,KhoiLuong,LuongCalo,ThanhPhan,MaLoai);
+                                       HashMap<String, Object> mapSP = sp.convertHashMap();
+                                       db.collection("SanPham")
+                                                .document(MaSP)
+                                                .set(mapSP)
+                                               .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                       Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                    }
+                                               })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                       @Override
+
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+                                    } else {
+                                        // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
+                                        Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    // Xử lý khi truy vấn không thành công
+                                    Toast.makeText(getContext(), "Lỗi khi kiểm tra tên đăng nhập.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 //    private ArrayList<HashMap<String,Object>> getDSLoaiSach() {

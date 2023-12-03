@@ -26,7 +26,7 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(String maSP, String tenSP, int gia, String khoiLuong, String luongCalo, String thanhPhan, String maLoai, String tenLoai, int soLuong) {
+    public SanPham(String maSP, String tenSP, int gia, String khoiLuong, String luongCalo, String thanhPhan, String maLoai) {
         MaSP = maSP;
         TenSP = tenSP;
         Gia = gia;
@@ -34,8 +34,8 @@ public class SanPham {
         LuongCalo = luongCalo;
         ThanhPhan = thanhPhan;
         MaLoai = maLoai;
-        TenLoai = tenLoai;
-        SoLuong = soLuong;
+
+
     }
 
     public String getMaSP() {
