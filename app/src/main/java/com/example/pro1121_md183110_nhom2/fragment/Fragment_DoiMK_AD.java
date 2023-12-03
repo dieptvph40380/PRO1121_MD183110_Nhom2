@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.pro1121_md183110_nhom2.R;
 import com.example.pro1121_md183110_nhom2.model.Admin;
-import com.example.pro1121_md183110_nhom2.model.NhanVien;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
@@ -28,7 +28,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class Fragment_DoiMK_AD extends Fragment {
@@ -53,8 +52,15 @@ public class Fragment_DoiMK_AD extends Fragment {
         // Inflate the layout for this fragment
        View v=inflater.inflate(R.layout.fragment__doi_m_k_ad, container, false);
 
-       database=FirebaseFirestore.getInstance();
-       list=new ArrayList<Admin>();
+        database=FirebaseFirestore.getInstance();
+        list=new ArrayList<>();
+//        ListenFirebaseFirestore();
+
+
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
+
 
 
        edtMKC=v.findViewById(R.id.edt_MKC_AD);
@@ -65,7 +71,7 @@ public class Fragment_DoiMK_AD extends Fragment {
        btnXacNhan.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               DoiMK(position);
+               DoiMK();
            }
        });
 
@@ -73,7 +79,6 @@ public class Fragment_DoiMK_AD extends Fragment {
     }
 
 
-//aa
 //    private void ListenFirebaseFirestore(){
 //        database.collection("NhanVien").addSnapshotListener(new EventListener<QuerySnapshot>() {
 //            @Override
@@ -118,10 +123,9 @@ public class Fragment_DoiMK_AD extends Fragment {
 //        });
 //    }
 
-
-    public void DoiMK(int position){
+    public void DoiMK(){
         String MaAC = list.get(position).getMaAC();
-        Toast.makeText(getContext(), ""+MaAC, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
         String TenAC = list.get(position).getTenAC();
         String MatKhau= edtMKC.getText().toString();
         String MKM = edtMKM.getText().toString();
@@ -130,17 +134,17 @@ public class Fragment_DoiMK_AD extends Fragment {
             Admin admin= new Admin(MaAC,TenAC,MatKhau);
             HashMap<String, Object> mapad = admin.convertHashMap();
             database.collection("NhanVien")
-                    .document(MaAC)
+                    .document(MatKhau)
                     .update(mapad)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Sửa thành công", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Sửa thất bại", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -149,4 +153,5 @@ public class Fragment_DoiMK_AD extends Fragment {
         }
 
     }
+
 }

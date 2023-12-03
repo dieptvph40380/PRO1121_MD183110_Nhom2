@@ -36,13 +36,13 @@
             android:name=".DangKy_KhachHang"
             android:exported="false" />
         <activity
-            android:name=".Menu_Admin"
+            android:name=".DangNhap"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".DangNhap"
+            android:name=".ChucVu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
