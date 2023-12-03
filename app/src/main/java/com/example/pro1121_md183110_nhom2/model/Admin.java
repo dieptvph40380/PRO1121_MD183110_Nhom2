@@ -12,7 +12,6 @@ public class Admin {
 
     public HashMap<String, Object> convertHashMap(){
         HashMap<String, Object> Admin = new HashMap<>();
-//        Admin.put("ID",ID);
         Admin.put("MaAC",MaAC);
         Admin.put("TenAC",TenAC);
         Admin.put("MatKhau",MatKhau);
@@ -21,7 +20,11 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin( String maAC, String tenAC, String matKhau) {
+    public Admin(String matKhau) {
+        MatKhau = matKhau;
+    }
+
+    public Admin(String maAC, String tenAC, String matKhau) {
 //        this.ID = ID;
         MaAC = maAC;
         TenAC = tenAC;

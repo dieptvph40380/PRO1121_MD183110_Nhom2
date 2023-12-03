@@ -49,11 +49,11 @@ public class Fragment_QL_NhanVien extends Fragment {
     RecyclerView rcv;
     FloatingActionButton fab;
     Dialog dialog;
+    Context context;
     EditText tennv, sdt, user, pass;
-    ArrayList<String> list = new ArrayList<>();
     ArrayList<NhanVien> nvList = new ArrayList<>();
     NhanVienAdapter adapter;
-    Context context;
+
     Button btnthem,btnhuy;
 
 
