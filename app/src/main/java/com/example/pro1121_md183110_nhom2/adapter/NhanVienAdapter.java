@@ -71,8 +71,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 sdt= dialog.findViewById(R.id.edt_SDT_NV);
                 user = dialog.findViewById(R.id.edt_User_NV);
                 pass = dialog.findViewById(R.id.edt_Pass_NV);
-                btnhuy = dialog.findViewById(R.id.btn_Huy_NV);
-                btnsua = dialog.findViewById(R.id.btn_Sua_NV);
+
 
                 tennv.setText(list.get(position).getTenNV()+"");
                 sdt.setText(list.get(position).getSDT()+"");
