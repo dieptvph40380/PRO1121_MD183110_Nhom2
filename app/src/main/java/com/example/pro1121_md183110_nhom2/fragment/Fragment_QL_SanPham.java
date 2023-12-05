@@ -148,6 +148,7 @@ public class Fragment_QL_SanPham extends Fragment {
                 }
             }
         });
+
     }
 
     public void openDialog(final Context context, int position) {
@@ -184,6 +185,7 @@ public class Fragment_QL_SanPham extends Fragment {
                 sanPham.setKhoiLuong(khoiluong.getText().toString());
                 sanPham.setTenSP(tensp.getText().toString());
                 sanPham.setMaLoai(loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP());
+                sanPham.setTenLoai(loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP());
                 db.collection("SanPham").document(masanpham).set(sanPham.convertHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
