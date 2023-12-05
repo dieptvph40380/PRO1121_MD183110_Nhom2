@@ -1,8 +1,10 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +73,7 @@ List<String> loaiSanPhamList;
         SanPham sanPham= list.get(position);
         holder.tensp.setText(sanPham.getTenSP());
         holder.giasp.setText(String.valueOf(sanPham.getGia()));
+        holder.tenloai.setText(sanPham.getTenLoai());
 
 
 
@@ -87,9 +90,42 @@ List<String> loaiSanPhamList;
             @Override
             public void onClick(View v) {
                 //xử lý xóa sản phẩm ở đây
+                android.app.AlertDialog.Builder alertDelete = new android.app.AlertDialog.Builder(context);
+                alertDelete.setTitle("canh bao");
+                alertDelete.setMessage(" ban co chac muon xoa cong viec nay khong");
+                alertDelete.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String MaSP = list.get(position).getMaSP();
+                        database.collection("SanPham")
+                                .document(MaSP)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(context, "delete thanh cong", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(context, "delete that bai", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        notifyItemRemoved(holder.getAdapterPosition());
+                    }
+                });
+                alertDelete.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog a1 = alertDelete.create();
+                a1.show();;
+
             }
         });
-    }
+}
 
     @Override
     public int getItemCount() {
@@ -97,15 +133,16 @@ List<String> loaiSanPhamList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tensp,giasp,khoiluong,luongcalo,thanhphan;
+        TextView tensp,giasp,tenloai,khoiluong,luongcalo,thanhphan;
         Spinner spnloai;
         ImageView imgxoa,imgsua;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tensp=itemView.findViewById(R.id.tv_Ten_SP);
             giasp=itemView.findViewById(R.id.tv_Gia_SP);
-            imgxoa=itemView.findViewById(R.id.img_Edit_SP);
-            imgsua=itemView.findViewById(R.id.img_Remove_SP);
+            tenloai=itemView.findViewById(R.id.tv_Ten_Loai);
+            imgsua=itemView.findViewById(R.id.img_Edit_SP);
+            imgxoa=itemView.findViewById(R.id.img_Remove_SP);
 
         }
     }
@@ -183,7 +220,9 @@ List<String> loaiSanPhamList;
 
                 String MaSP = list.get(position).getMaSP();
                 String TenSP = tensp.getText().toString();
-                int Gia = Integer.parseInt((giasp.getText().toString()));
+              // int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
+                int Gia=Integer.parseInt(giasp.getText().toString());
+
                 String MaLoai = String.valueOf(spnloai.getSelectedItemPosition());
                 String KhoiLuong = khoiluong.getText().toString();
                 String LuongCalo= luongcalo.getText().toString();
