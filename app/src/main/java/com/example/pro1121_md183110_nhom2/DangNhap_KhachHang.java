@@ -43,7 +43,7 @@ public class DangNhap_KhachHang extends AppCompatActivity {
         edtDN_KH.setText(user_kh);
         edtMK_KH .setText(pass_kh);
         chkRememberPass.setChecked(rem_kh);
-        edtDN_KH.setOnClickListener(new View.OnClickListener() {
+        btnDangNhap_KH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { checkLoginf();
 

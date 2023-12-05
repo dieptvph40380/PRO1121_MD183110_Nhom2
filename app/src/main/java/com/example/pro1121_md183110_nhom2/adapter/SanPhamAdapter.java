@@ -69,10 +69,7 @@ List<String> loaiSanPhamList;
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.tensp.setText(list.get(position).getTenNV());
-//        holder.sdt.setText(list.get(position).getSDT());
-//        holder.user.setText(list.get(position).getUser());
-//        holder.pass.setText(list.get(position).getPass());
+
         SanPham sanPham= list.get(position);
         holder.tensp.setText(sanPham.getTenSP());
         holder.giasp.setText(String.valueOf(sanPham.getGia()));
@@ -223,8 +220,9 @@ List<String> loaiSanPhamList;
 
                 String MaSP = list.get(position).getMaSP();
                 String TenSP = tensp.getText().toString();
-               // int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
+              // int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
                 int Gia=Integer.parseInt(giasp.getText().toString());
+
                 String MaLoai = String.valueOf(spnloai.getSelectedItemPosition());
                 String KhoiLuong = khoiluong.getText().toString();
                 String LuongCalo= luongcalo.getText().toString();
@@ -250,12 +248,7 @@ List<String> loaiSanPhamList;
                 dialog.dismiss();
             }
         });
-//        btnhuy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
+
         dialog.show();
     }
 }

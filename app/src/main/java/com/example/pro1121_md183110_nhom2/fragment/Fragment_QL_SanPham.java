@@ -207,6 +207,7 @@ dialog1.dismiss();
     private void getLoaiSanPham() {
         db.collection("LoaiSanPham").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
+
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isComplete()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
@@ -215,6 +216,8 @@ dialog1.dismiss();
                         spinnerAdapter.notifyDataSetChanged();
                     }
                 }
+
+
 
             }
         });

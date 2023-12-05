@@ -15,9 +15,9 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoiMK;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoiMK_AD;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoiMK_KH;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_DonHang;
-import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_KhachHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_Top_MuaSanPham_;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_XemGH;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_XemSP;
@@ -55,7 +55,7 @@ public class Menu_KhanhHang extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }  else if (item.getItemId() == R.id.DoiMk_KH) {
-                    fragment = new Fragment_DoiMK();
+                    fragment = new Fragment_DoiMK_KH();
                     Toast.makeText(getApplicationContext(),"Đổi Mật Khẩu",Toast.LENGTH_SHORT).show();
                 }else if (item.getItemId() == R.id.Xem_DonHang) {
                     fragment = new Fragment_QL_DonHang();

@@ -68,12 +68,12 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
         fab=view.findViewById(R.id.floatAdd_AD);
         rcv=view.findViewById(R.id.recycler_LoaiSP);
         db=FirebaseFirestore.getInstance();
-        ListenFirebaseFirestore();
 
         adapter = new LoaiSanPhamAdapter(spList,getContext(),db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
+        ListenFirebaseFirestore();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +87,8 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
 
 
     private void ListenFirebaseFirestore(){
-        db.collection("LoaiSanPham").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("LoaiSanPham")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(error != null){
