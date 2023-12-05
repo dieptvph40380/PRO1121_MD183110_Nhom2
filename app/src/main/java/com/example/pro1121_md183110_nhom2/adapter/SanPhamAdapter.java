@@ -186,7 +186,8 @@ List<String> loaiSanPhamList;
 
                 String MaSP = list.get(position).getMaSP();
                 String TenSP = tensp.getText().toString();
-                int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
+               // int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
+                int Gia=Integer.parseInt(giasp.getText().toString());
                 String MaLoai = String.valueOf(spnloai.getSelectedItemPosition());
                 String KhoiLuong = khoiluong.getText().toString();
                 String LuongCalo= luongcalo.getText().toString();
