@@ -44,29 +44,29 @@ public class Menu_NhanVien extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
-                if (item.getItemId() == R.id.QLSanPham_AD){
-                    fragment = new Fragment_QL_SanPham();
+                Fragment fragment_nv = null;
+                if (item.getItemId() == R.id.QLSanPham_NV){
+                    fragment_nv = new Fragment_QL_SanPham();
                     Toast.makeText(getApplicationContext(),"Quản Lý Sản Phẩm",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.QLLoaiSanPham_AD) {
-                    fragment = new Fragment_QL_LoaiSanPham();
-                    Toast.makeText(getApplicationContext(),"Quản Lý Loại Sách",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.LogOut_AD) {
+                } else if (item.getItemId() == R.id.QLLoaiSanPham_NV) {
+                    fragment_nv = new Fragment_QL_LoaiSanPham();
+                    Toast.makeText(getApplicationContext(),"Quản Lý Loại Sản Phẩm",Toast.LENGTH_SHORT).show();
+                } else if (item.getItemId() == R.id.LogOut_NV) {
                     Intent intent = new Intent(Menu_NhanVien.this, DangNhap_NhanVien.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                }  else if (item.getItemId() == R.id.QLKhachHang_AD) {
-                    fragment = new Fragment_QL_KhachHang();
+                }  else if (item.getItemId() == R.id.QLKhachHang_NV) {
+                    fragment_nv = new Fragment_QL_KhachHang();
                     Toast.makeText(getApplicationContext(),"Quản Lý Khách Hàng",Toast.LENGTH_SHORT).show();
-                }else if (item.getItemId() == R.id.QLHoaDon_AD) {
-                    fragment = new Fragment_QL_DonHang();
+                }else if (item.getItemId() == R.id.QLHoaDon_NV) {
+                    fragment_nv = new Fragment_QL_DonHang();
                     Toast.makeText(getApplicationContext(),"Quản Lý Đơn Hàng",Toast.LENGTH_SHORT).show();
                 }
 
-                if (fragment != null){
+                if (fragment_nv != null){
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
-                            .replace(R.id.framelayout_NV, fragment)
+                            .replace(R.id.framelayout_NV, fragment_nv)
                             .commit();
                     toolbar.setTitle(item.getTitle());
                 }

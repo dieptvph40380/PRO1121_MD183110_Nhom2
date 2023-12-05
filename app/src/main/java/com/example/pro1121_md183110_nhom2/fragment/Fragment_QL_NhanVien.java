@@ -173,6 +173,7 @@ public class Fragment_QL_NhanVien extends Fragment {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
                                                             Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                            dialog.dismiss();
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
@@ -182,9 +183,12 @@ public class Fragment_QL_NhanVien extends Fragment {
 
                                                     }
                                                 });
+
                                     } else {
+
                                         // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
                                         Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
+
                                     }
                                 } else {
                                     // Xử lý khi truy vấn không thành công
@@ -192,7 +196,7 @@ public class Fragment_QL_NhanVien extends Fragment {
                                 }
                             }
                         });
-                dialog.dismiss();
+
             }
         });
         dialog.show();

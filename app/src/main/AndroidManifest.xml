@@ -16,7 +16,7 @@
             android:name=".Menu_Admin"
             android:exported="false" />
         <activity
-            android:name=".Menu_KhanhHang"
+            android:name=".ChucVu"
             android:exported="false" />
         <activity
             android:name=".Menu_NhanVien"
@@ -25,7 +25,7 @@
             android:name=".DangNhap_NhanVien"
             android:exported="false" />
         <activity
-            android:name=".DangNhap_KhachHang"
+            android:name=".Menu_KhanhHang"
             android:exported="true" >
 
         </activity>
@@ -37,12 +37,14 @@
             android:exported="false" />
         <activity
             android:name=".DangNhap"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".DangNhap_KhachHang"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChucVu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -28,7 +28,7 @@
                 android:id="@+id/tv_Ten_NV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Họ và tên"
+                android:text="Họ và tên : "
                 android:layout_margin="5dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"

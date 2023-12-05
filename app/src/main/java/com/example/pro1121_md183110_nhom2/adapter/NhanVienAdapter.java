@@ -1,6 +1,5 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,8 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.List;
 
-import io.grpc.internal.ClientStream;
-
 public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHolder> {
 
     List<NhanVien> list;
@@ -38,11 +35,15 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
     Dialog dialog;
     EditText tennv, sdt, user, pass;
     Button btnsua,btnhuy;
+    private ItemClick itemKhoClick;
 
-    public NhanVienAdapter(List<NhanVien> list, Context context , FirebaseFirestore database){
+
+
+    public NhanVienAdapter(List<NhanVien> list, Context context , FirebaseFirestore database ){
         this.list = list;
         this.context = context;
         this.database = database;
+//        this.itemKhoClick = itemKhoClick;
     }
 
     @NonNull
@@ -56,7 +57,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull NhanVienAdapter.ViewHolder holder,  int position) {
         String [] manv = {list.get(holder.getAdapterPosition()).getMaNV()};
-        holder.tennv.setText(list.get(position).getTenNV());
+        holder.tennv.setText("ABC : "+list.get(position).getTenNV());
         holder.sdt.setText(list.get(position).getSDT());
         holder.user.setText(list.get(position).getUser());
         holder.pass.setText(list.get(position).getPass());
@@ -67,11 +68,15 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_sua_nv);
 
+
+
+//                itemKhoClick.onItemClick(list.get(holder.getAdapterPosition()));
+
                 tennv = dialog.findViewById(R.id.edt_TenNV);
                 sdt= dialog.findViewById(R.id.edt_SDT_NV);
                 user = dialog.findViewById(R.id.edt_User_NV);
                 pass = dialog.findViewById(R.id.edt_Pass_NV);
-
+                btnsua=dialog.findViewById(R.id.btn_Sua_NV);
 
                 tennv.setText(list.get(position).getTenNV()+"");
                 sdt.setText(list.get(position).getSDT()+"");
