@@ -59,31 +59,6 @@ public class DangNhap_KhachHang extends AppCompatActivity {
 
     }
     public void checkLoginf(){
-
-        String TenDN= edtDN_KH.getText().toString().trim();
-        String MK =edtMK_KH.getText().toString().trim();
-        database.collection("KhachHang")
-                .whereEqualTo("TenDN", TenDN)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if (task.getResult().isEmpty()) {
-                                Toast.makeText(DangNhap_KhachHang.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
-                            }else {
-                                String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("MatKhau");
-                                if (passwordFromDatabase != null && passwordFromDatabase.equals(MK)) {
-                                    // Mật khẩu đúng
-                                    Toast.makeText(DangNhap_KhachHang.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    SharedPreferences pef =getSharedPreferences("TTKH",MODE_PRIVATE);
-                                    SharedPreferences.Editor edit= pef.edit();
-                                    edit.putString("USERNAME_KH",TenDN);
-                                    edit.commit();
-                                    rememberUser(TenDN, MK, chkRememberPass.isChecked());
-                                    Intent i = new Intent(DangNhap_KhachHang.this, Menu_KhanhHang.class);
-                                    startActivity(i);
-
         if(validate()==1) {
             String TenDN = edtDN_KH.getText().toString().trim();
             String MK = edtMK_KH.getText().toString().trim();
@@ -101,6 +76,10 @@ public class DangNhap_KhachHang extends AppCompatActivity {
                                     if (passwordFromDatabase != null && passwordFromDatabase.equals(MK)) {
                                         // Mật khẩu đúng
                                         Toast.makeText(DangNhap_KhachHang.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                        SharedPreferences pef =getSharedPreferences("TTKH",MODE_PRIVATE);
+                                        SharedPreferences.Editor edit= pef.edit();
+                                        edit.putString("USERNAME_KH",TenDN);
+                                        edit.commit();
                                         rememberUser(TenDN, MK, chkRememberPass.isChecked());
                                         Intent i = new Intent(DangNhap_KhachHang.this, Menu_KhanhHang.class);
                                         startActivity(i);
@@ -144,3 +123,24 @@ public class DangNhap_KhachHang extends AppCompatActivity {
         return validate;
     }
 }
+
+//        String TenDN= edtDN_KH.getText().toString().trim();
+//        String MK =edtMK_KH.getText().toString().trim();
+//        database.collection("KhachHang")
+//                .whereEqualTo("TenDN", TenDN)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            if (task.getResult().isEmpty()) {
+//                                Toast.makeText(DangNhap_KhachHang.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
+//                            }else {
+//                                String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("MatKhau");
+//                                if (passwordFromDatabase != null && passwordFromDatabase.equals(MK)) {
+//                                    // Mật khẩu đúng
+//                                    Toast.makeText(DangNhap_KhachHang.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+
+//                                    rememberUser(TenDN, MK, chkRememberPass.isChecked());
+//                                    Intent i = new Intent(DangNhap_KhachHang.this, Menu_KhanhHang.class);
+//                                    startActivity(i);
