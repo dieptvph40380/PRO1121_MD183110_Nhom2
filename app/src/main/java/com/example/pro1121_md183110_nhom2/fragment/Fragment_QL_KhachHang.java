@@ -168,7 +168,7 @@ public class Fragment_QL_KhachHang extends Fragment {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
-
+                                                        dialog_KH.dismiss();
                                                     }
                                                 });
                                     } else {
@@ -181,7 +181,7 @@ public class Fragment_QL_KhachHang extends Fragment {
                                 }
                             }
                         });
-                dialog_KH.dismiss();
+
             }
         });
         dialog_KH.show();

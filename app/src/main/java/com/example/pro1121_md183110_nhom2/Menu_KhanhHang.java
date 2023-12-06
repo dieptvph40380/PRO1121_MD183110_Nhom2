@@ -50,7 +50,7 @@ public class Menu_KhanhHang extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.Xem_GioHang) {
                     fragment = new Fragment_XemGH();
                     Toast.makeText(getApplicationContext(),"Xem Giỏ Hàng",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.LogOut_AD) {
+                } else if (item.getItemId() == R.id.LogOut_KH) {
                     Intent intent = new Intent(Menu_KhanhHang.this, DangNhap_KhachHang.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

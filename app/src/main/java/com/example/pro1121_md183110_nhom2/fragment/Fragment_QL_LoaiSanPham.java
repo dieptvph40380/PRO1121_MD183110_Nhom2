@@ -173,7 +173,7 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
-
+                                                        dialog.dismiss();
                                                     }
                                                 });
                                     } else {
@@ -186,7 +186,7 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
                                 }
                             }
                         });
-                dialog.dismiss();
+
             }
         });
         dialog.show();
