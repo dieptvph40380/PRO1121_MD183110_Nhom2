@@ -68,6 +68,10 @@ public class DangNhap_KhachHang extends AppCompatActivity {
                                 if (passwordFromDatabase != null && passwordFromDatabase.equals(MK)) {
                                     // Mật khẩu đúng
                                     Toast.makeText(DangNhap_KhachHang.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences pef =getSharedPreferences("TTKH",MODE_PRIVATE);
+                                    SharedPreferences.Editor edit= pef.edit();
+                                    edit.putString("USERNAME_KH",TenDN);
+                                    edit.commit();
                                     rememberUser(TenDN, MK, chkRememberPass.isChecked());
                                     Intent i = new Intent(DangNhap_KhachHang.this, Menu_KhanhHang.class);
                                     startActivity(i);

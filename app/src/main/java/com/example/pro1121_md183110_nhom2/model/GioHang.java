@@ -1,17 +1,31 @@
 package com.example.pro1121_md183110_nhom2.model;
 
+import java.util.HashMap;
+
 public class GioHang {
-private String MaGH;
-private Long ThanhTien;
-private int SoLuong;
-private String Size;
-private String MaKH;
-private String MaSP;
+    private String MaGH;
+    private int ThanhTien;
+    private int SoLuong;
+    private String Size;
+    private String MaKH;
+    private String MaSP;
+
+
+    public HashMap<String, Object> convertHashMap() {
+        HashMap<String, Object> GioHang = new HashMap<>();
+        GioHang.put("MaKH", MaKH);
+        GioHang.put("MaGH", MaGH);
+        GioHang.put("ThanhTien", ThanhTien);
+        GioHang.put("SoLuong", SoLuong);
+        GioHang.put("Size", Size);
+        GioHang.put("MaSP", MaSP);
+        return GioHang;
+    }
 
     public GioHang() {
     }
 
-    public GioHang(String maGH, Long thanhTien, int soLuong, String size, String maKH, String maSP) {
+    public GioHang(String maGH, int thanhTien, int soLuong, String size, String maKH, String maSP) {
         MaGH = maGH;
         ThanhTien = thanhTien;
         SoLuong = soLuong;
@@ -28,11 +42,11 @@ private String MaSP;
         MaGH = maGH;
     }
 
-    public Long getThanhTien() {
+    public int getThanhTien() {
         return ThanhTien;
     }
 
-    public void setThanhTien(Long thanhTien) {
+    public void setThanhTien(int thanhTien) {
         ThanhTien = thanhTien;
     }
 
@@ -68,3 +82,7 @@ private String MaSP;
         MaSP = maSP;
     }
 }
+
+
+
+
