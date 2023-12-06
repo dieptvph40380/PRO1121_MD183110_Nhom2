@@ -1,5 +1,6 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -35,7 +36,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
     Dialog dialog;
     EditText tennv, sdt, user, pass;
     Button btnsua,btnhuy;
-    private ItemClick itemKhoClick;
+
 
 
 
@@ -55,12 +56,12 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NhanVienAdapter.ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull NhanVienAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String [] manv = {list.get(holder.getAdapterPosition()).getMaNV()};
-        holder.tennv.setText("ABC : "+list.get(position).getTenNV());
-        holder.sdt.setText(list.get(position).getSDT());
-        holder.user.setText(list.get(position).getUser());
-        holder.pass.setText(list.get(position).getPass());
+        holder.tennv.setText("Tên NV : "+list.get(position).getTenNV());
+        holder.sdt.setText("SDT : "+list.get(position).getSDT());
+        holder.user.setText("User : "+list.get(position).getUser());
+        holder.pass.setText("Pass : "+list.get(position).getPass());
 
         holder.imgsua.setOnClickListener(new View.OnClickListener() {
             @Override

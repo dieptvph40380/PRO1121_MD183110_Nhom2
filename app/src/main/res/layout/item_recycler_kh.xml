@@ -12,45 +12,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-
             <TextView
                 android:id="@+id/tvHoTen_KH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Họ và tên"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -58,25 +28,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SDT"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -84,23 +39,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tên DN"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -108,32 +50,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mật khẩu"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-
-
             <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
                 android:id="@+id/btnRemove"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:src="@drawable/trash" />
-
-        </LinearLayout>
 
     </LinearLayout>
 

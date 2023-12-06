@@ -1,5 +1,6 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -51,10 +52,10 @@ public class LoaiSanPhamAdapter extends RecyclerView.Adapter<LoaiSanPhamAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LoaiSanPhamAdapter.ViewHolder holder,  int position) {
+    public void onBindViewHolder(@NonNull LoaiSanPhamAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String [] malsp = {list.get(holder.getAdapterPosition()).getMaLSP()};
-        holder.tenlsp.setText(list.get(position).getTenLSP());
-        holder.nsx.setText(list.get(position).getNSXLSP());
+        holder.tenlsp.setText("Tên Loại : "+list.get(position).getTenLSP());
+        holder.nsx.setText("Nhà SX : "+list.get(position).getNSXLSP());
 
 
         holder.imgsua.setOnClickListener(new View.OnClickListener() {
