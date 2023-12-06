@@ -68,35 +68,37 @@ public class DangNhap extends AppCompatActivity {
 
     }
     public void checkLogin(){
-        String TenDN= edtDN.getText().toString().trim();
-        String MatKhau = edtMK.getText().toString().trim();
-        database.collection("Admin")
-                .whereEqualTo("MaAC", TenDN)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if (task.getResult().isEmpty()) {
-                                Toast.makeText(DangNhap.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
-                            }else {
-                                String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("MatKhau");
-                                if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau)) {
-                                    // Mật khẩu đúng
-                                    Toast.makeText(DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    rememberUser(TenDN, MatKhau, chkLuuMK.isChecked());
-                                    Intent i = new Intent(DangNhap.this, Menu_Admin.class);
-                                    startActivity(i);
+        if(validate()==1) {
+            String TenDN = edtDN.getText().toString().trim();
+            String MatKhau = edtMK.getText().toString().trim();
+            database.collection("Admin")
+                    .whereEqualTo("MaAC", TenDN)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                if (task.getResult().isEmpty()) {
+                                    Toast.makeText(DangNhap.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // Mật khẩu không đúng
-                                    Toast.makeText(DangNhap.this, "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("MatKhau");
+                                    if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau)) {
+                                        // Mật khẩu đúng
+                                        Toast.makeText(DangNhap.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                        rememberUser(TenDN, MatKhau, chkLuuMK.isChecked());
+                                        Intent i = new Intent(DangNhap.this, Menu_Admin.class);
+                                        startActivity(i);
+                                    } else {
+                                        // Mật khẩu không đúng
+                                        Toast.makeText(DangNhap.this, "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            } else {
+                                Toast.makeText(DangNhap.this, "Lỗi khi kiểm tra", Toast.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Toast.makeText(DangNhap.this, "Lỗi khi kiểm tra", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        }
     }
     public void rememberUser(String u , String p ,boolean status){
         SharedPreferences pef =getSharedPreferences("USER_FILE",MODE_PRIVATE);
@@ -112,6 +114,17 @@ public class DangNhap extends AppCompatActivity {
         }
         //Lưu toàn bộ
         edit.commit();
+    }
+    public int validate(){
+        int validate;
+        if(edtDN.getText().length()==0||edtMK.getText().length()==0){
+            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate=0;
+        }else {
+            validate =1;
+
+        }
+        return validate;
     }
 
 }

@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +24,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.pro1121_md183110_nhom2.R;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_SanPham;
 import com.example.pro1121_md183110_nhom2.model.LoaiSanPham;
 import com.example.pro1121_md183110_nhom2.model.NhanVien;
 import com.example.pro1121_md183110_nhom2.model.SanPham;
@@ -35,6 +38,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.checkerframework.checker.units.qual.K;
 
@@ -51,16 +56,36 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     FirebaseFirestore database;
     Dialog dialog;
     EditText tensp, giasp , thanhphan,khoiluong,luongcalo;
+    ImageView imgsuanh;
     Spinner spnloai;
-    Button btnsua,btnhuy;
+    Button btnsua,btnhuy,btnsuanh;
     List<LoaiSanPham> loaiSanPhamList;
+    public Uri filePath; // đường dẫn file
+    // khai báo request code để chọn ảnh
+    private final int PICK_IMAGE_REQUEST = 22;
+    FirebaseStorage storage;
 
-    public SanPhamAdapter(List<SanPham> list, Context context, FirebaseFirestore database){
+    StorageReference storageReference;
+    Uri downloadUri;
+    String TAG = "zzzzzzzzzz";
+    Fragment_QL_SanPham fragment_ql_sanPham;
+    public void setFilePath(Uri filePath) {
+        this.filePath = filePath;
+    }
+
+    public SanPhamAdapter(List<SanPham> list, Context context, FirebaseFirestore database,List<LoaiSanPham> loaiSanPhamList, Fragment_QL_SanPham fragment_ql_sanPham){
         this.list=list;
         this.context = context;
         this.database = database;
-        this.loaiSanPhamList= new ArrayList<>();
+        this.loaiSanPhamList= loaiSanPhamList;
+        this.fragment_ql_sanPham = fragment_ql_sanPham;
         fetchLoaiSanPhamData();
+
+        // Khởi tạo FirebaseStorage
+        storage = FirebaseStorage.getInstance();
+
+        // Khởi tạo StorageReference
+        storageReference = storage.getReference();
     }
 
     @NonNull
@@ -78,17 +103,15 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         holder.tensp.setText("Tên SP : "+sanPham.getTenSP());
         holder.giasp.setText("Giá : "+String.valueOf(sanPham.getGia()));
         holder.tenloai.setText("Tên Loại : "+sanPham.getTenLoai());
-
-
-
+        Glide.with(context).load(list.get(position).getIMG()).into(holder.imganhsp);
 
 //bật sk khi click vào nút sửa
         holder.imgsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                showDialog(position);
+                fragment_ql_sanPham.check=2;
+                fragment_ql_sanPham.showDialog(position,context);
             }
         });
         //Bắt sk khi click vô xóa
@@ -141,6 +164,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tensp,giasp,tenloai,khoiluong,luongcalo,thanhphan;
         Spinner spnloai;
+        ImageView imganhsp;
         ImageView imgxoa,imgsua;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -149,6 +173,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             tenloai=itemView.findViewById(R.id.tv_Ten_Loai);
             imgsua=itemView.findViewById(R.id.img_Edit_SP);
             imgxoa=itemView.findViewById(R.id.img_Remove_SP);
+            imganhsp=itemView.findViewById(R.id.img_SP);
 
         }
     }
@@ -227,6 +252,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         btnsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fragment_ql_sanPham.showDialog(position,context);
                 //xử lý logic sửa sản phẩm ở đây
                 // cập nhật dl trong danh sách list
 
@@ -241,8 +267,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 String ThanhPhan= thanhphan.getText().toString();
                 String TenLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
                 String NSX = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
+                String IMG=imgsuanh.toString();
 
-                SanPham sanPham1 = new SanPham(MaSP,TenSP,Gia, KhoiLuong,LuongCalo,ThanhPhan,MaLoai,TenLoai,NSX);
+                SanPham sanPham1 = new SanPham(MaSP,TenSP,Gia, KhoiLuong,LuongCalo,ThanhPhan,MaLoai,TenLoai,NSX,IMG);
                 HashMap<String, Object> mapsp = sanPham1.convertHashMap();
 
                 database.collection("SanPham")
@@ -266,7 +293,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         dialog.show();
     }
 
-    private int getIndex(String maloai) {
+    public int getIndex(String maloai) {
         int i=0;
         for(LoaiSanPham loaiSanPham : loaiSanPhamList){
             if(loaiSanPham.getMaLSP().equals(maloai)){

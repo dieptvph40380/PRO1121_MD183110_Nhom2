@@ -52,35 +52,37 @@ public class DangNhap_NhanVien extends AppCompatActivity {
         });
     }
     public void checkLogin(){
-        String TenDN_NV= edtDN_NV.getText().toString().trim();
-        String MatKhau_NV = edtMK_NV.getText().toString().trim();
-        database.collection("NhanVien")
-                .whereEqualTo("User", TenDN_NV)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if (task.getResult().isEmpty()) {
-                                Toast.makeText(DangNhap_NhanVien.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
-                            }else {
-                                String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("Pass");
-                                if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau_NV)) {
-                                    // Mật khẩu đúng
-                                    Toast.makeText(DangNhap_NhanVien.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                                    rememberUser1(TenDN_NV, MatKhau_NV, chkLuuMK.isChecked());
-                                    Intent i = new Intent(DangNhap_NhanVien.this, Menu_NhanVien.class);
-                                    startActivity(i);
+        if(validate()==1) {
+            String TenDN_NV = edtDN_NV.getText().toString().trim();
+            String MatKhau_NV = edtMK_NV.getText().toString().trim();
+            database.collection("NhanVien")
+                    .whereEqualTo("User", TenDN_NV)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                if (task.getResult().isEmpty()) {
+                                    Toast.makeText(DangNhap_NhanVien.this, "Sai tên đăng nhập", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // Mật khẩu không đúng
-                                    Toast.makeText(DangNhap_NhanVien.this, "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    String passwordFromDatabase = task.getResult().getDocuments().get(0).getString("Pass");
+                                    if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau_NV)) {
+                                        // Mật khẩu đúng
+                                        Toast.makeText(DangNhap_NhanVien.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                        rememberUser1(TenDN_NV, MatKhau_NV, chkLuuMK.isChecked());
+                                        Intent i = new Intent(DangNhap_NhanVien.this, Menu_NhanVien.class);
+                                        startActivity(i);
+                                    } else {
+                                        // Mật khẩu không đúng
+                                        Toast.makeText(DangNhap_NhanVien.this, "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            } else {
+                                Toast.makeText(DangNhap_NhanVien.this, "Lỗi khi kiểm tra", Toast.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Toast.makeText(DangNhap_NhanVien.this, "Lỗi khi kiểm tra", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+        }
     }
     public void rememberUser1(String unv , String pnv ,boolean statusnv){
         SharedPreferences pef =getSharedPreferences("USER_FILE_NV",MODE_PRIVATE);
@@ -96,5 +98,16 @@ public class DangNhap_NhanVien extends AppCompatActivity {
         }
         //Lưu toàn bộ
         edit.commit();
+    }
+    public int validate(){
+        int validate;
+        if(edtDN_NV.getText().length()==0||edtMK_NV.getText().length()==0){
+            Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate=0;
+        }else {
+            validate =1;
+
+        }
+        return validate;
     }
 }
