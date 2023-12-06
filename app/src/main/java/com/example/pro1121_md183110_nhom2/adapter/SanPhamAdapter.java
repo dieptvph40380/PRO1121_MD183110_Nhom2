@@ -1,5 +1,8 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
+import static android.content.ContentValues.TAG;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -50,7 +53,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     EditText tensp, giasp , thanhphan,khoiluong,luongcalo;
     Spinner spnloai;
     Button btnsua,btnhuy;
-List<String> loaiSanPhamList;
+    List<LoaiSanPham> loaiSanPhamList;
+
     public SanPhamAdapter(List<SanPham> list, Context context, FirebaseFirestore database){
         this.list=list;
         this.context = context;
@@ -68,12 +72,12 @@ List<String> loaiSanPhamList;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         SanPham sanPham= list.get(position);
-        holder.tensp.setText(sanPham.getTenSP());
-        holder.giasp.setText(String.valueOf(sanPham.getGia()));
-        holder.tenloai.setText(sanPham.getTenLoai());
+        holder.tensp.setText("Tên SP : "+sanPham.getTenSP());
+        holder.giasp.setText("Giá : "+String.valueOf(sanPham.getGia()));
+        holder.tenloai.setText("Tên Loại : "+sanPham.getTenLoai());
 
 
 
@@ -82,6 +86,8 @@ List<String> loaiSanPhamList;
         holder.imgsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 showDialog(position);
             }
         });
@@ -154,8 +160,8 @@ List<String> loaiSanPhamList;
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String loaiSP = document.getString("tenLoaiSP");
-                                loaiSanPhamList.add(loaiSP);
+
+                                loaiSanPhamList.add(document.toObject(LoaiSanPham.class));
                             }
                             notifyDataSetChanged();
                             }
@@ -176,13 +182,24 @@ List<String> loaiSanPhamList;
         thanhphan=dialog.findViewById(R.id.edt_TP_SP);
         btnhuy=dialog.findViewById(R.id.btn_HuyT_SP);
         btnsua=dialog.findViewById(R.id.btn_Sua_SP);
-   //     List<String> dataList = new ArrayList<>();
+        //     List<String> dataList = new ArrayList<>();
 
-// Thêm các mục dữ liệu khác nếu cần
+        // Thêm các mục dữ liệu khác nếu cần
         // Thay thế LoaiSachDAO và phương thức getListLoaiSach() bằng truy vấn dữ liệu từ Firestore
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         CollectionReference loaiSachCollection = database.collection("LoaiSanPham");
 
+
+        tensp.setText(list.get(position).getTenSP());
+        giasp.setText(list.get(position).getGia()+"");
+        khoiluong.setText(list.get(position).getKhoiLuong());
+        luongcalo.setText(list.get(position).getLuongCalo());
+        thanhphan.setText(list.get(position).getThanhPhan());
+
+        int tenloai=getIndex(list.get(position).getMaLoai());
+
+
+        Log.e("TAG",tenloai+"" );
         loaiSachCollection.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -193,13 +210,10 @@ List<String> loaiSanPhamList;
                     LoaiSanPham loaiSanPham = document.toObject(LoaiSanPham.class);
                     loaisachs.add(loaiSanPham.getTenLSP());
 
-                    if (loaiSanPham.getMaLSP().equals(list.get(position).getMaLoai())) {
-                        spnIndex = loaisachs.indexOf(loaiSanPham.getMaLSP());
-                    }
                 }
 
                 spnloai.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, loaisachs));
-                spnloai.setSelection(spnIndex);
+                spnloai.setSelection(tenloai);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -208,10 +222,8 @@ List<String> loaiSanPhamList;
             }
         });
  //     spnloai.setSelection(loaiSanPhamList.indexOf(sanPham.getMaLoai()));
-     spnloai.setSelection(loaiSanPhamList.indexOf(list.get(position).getMaLoai()));
-        khoiluong.setText(String.valueOf(list.get(position).getKhoiLuong()));
-        luongcalo.setText(String.valueOf(list.get(position).getLuongCalo()));
-        thanhphan.setText(String.valueOf(list.get(position).getThanhPhan()));
+
+
         btnsua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,12 +235,14 @@ List<String> loaiSanPhamList;
               // int Gia = Integer.parseInt(String.valueOf(giasp.getText().toString()));
                 int Gia=Integer.parseInt(giasp.getText().toString());
 
-                String MaLoai = String.valueOf(spnloai.getSelectedItemPosition());
+                String MaLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP();
                 String KhoiLuong = khoiluong.getText().toString();
                 String LuongCalo= luongcalo.getText().toString();
                 String ThanhPhan= thanhphan.getText().toString();
+                String TenLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
+                String NSX = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
 
-                SanPham sanPham1 = new SanPham(MaSP,TenSP,Gia,MaLoai, KhoiLuong,LuongCalo,ThanhPhan);
+                SanPham sanPham1 = new SanPham(MaSP,TenSP,Gia, KhoiLuong,LuongCalo,ThanhPhan,MaLoai,TenLoai,NSX);
                 HashMap<String, Object> mapsp = sanPham1.convertHashMap();
 
                 database.collection("SanPham")
@@ -250,5 +264,20 @@ List<String> loaiSanPhamList;
         });
 
         dialog.show();
+    }
+
+    private int getIndex(String maloai) {
+        int i=0;
+        for(LoaiSanPham loaiSanPham : loaiSanPhamList){
+            if(loaiSanPham.getMaLSP().equals(maloai)){
+                break;
+
+            }
+            i++;
+        }
+        if(i==loaiSanPhamList.size()){
+            return 0;
+        }
+        return i;
     }
 }

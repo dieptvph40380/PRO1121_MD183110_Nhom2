@@ -86,9 +86,6 @@ public class Fragment_QL_SanPham extends Fragment {
         db = FirebaseFirestore.getInstance();
         ListenFirebaseFirestore();
 
-        // nhanVienAdapter= new NhanVienAdapter(nvList,getContext(),db);
-
-
         adapter = new SanPhamAdapter(list, getContext(), db);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -157,6 +154,7 @@ public class Fragment_QL_SanPham extends Fragment {
         builder.setView(view);
         Dialog dialog1 = builder.create();
         dialog1.show();
+
         tensp = view.findViewById(R.id.edt_Ten_SP);
         giasp = view.findViewById(R.id.edt_Gia_SP);
         spnloai = view.findViewById(R.id.spn_TenLoai);
@@ -178,7 +176,7 @@ public class Fragment_QL_SanPham extends Fragment {
                 SanPham sanPham = new SanPham();
                 String masanpham = UUID.randomUUID().toString();
                 sanPham.setMaSP(masanpham);
-//                Log.e("TAG", "onClick: "+123);
+
                 sanPham.setThanhPhan(thanhphan.getText().toString());
                 sanPham.setLuongCalo(luongcalo.getText().toString());
                 sanPham.setGia(Integer.parseInt(giasp.getText().toString()));
@@ -186,12 +184,13 @@ public class Fragment_QL_SanPham extends Fragment {
                 sanPham.setTenSP(tensp.getText().toString());
                 sanPham.setMaLoai(loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP());
                 sanPham.setTenLoai(loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP());
-                db.collection("SanPham").document(masanpham).set(sanPham.convertHashMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                sanPham.setNSX(loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP());
+                db.collection("SanPham").document(masanpham).set(sanPham).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-dialog1.dismiss();
+                            dialog1.dismiss();
                         }
                         else {
                             Toast.makeText(getContext(), "thêm thất bại", Toast.LENGTH_SHORT).show();
@@ -223,6 +222,8 @@ dialog1.dismiss();
         });
 
     }
+
+
 }
 
 

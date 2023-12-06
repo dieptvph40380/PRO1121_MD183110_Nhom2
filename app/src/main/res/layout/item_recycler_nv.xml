@@ -12,41 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/tv_Ten_NV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Họ và tên : "
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/newborn"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -54,25 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SDT"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/flashsale"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -80,23 +40,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Username"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/type2"
-                android:layout_margin="5dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -104,18 +51,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Password"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textColor="#8a97dd"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="2"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <ImageView

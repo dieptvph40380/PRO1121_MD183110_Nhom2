@@ -1,5 +1,6 @@
 package com.example.pro1121_md183110_nhom2.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -51,12 +52,12 @@ public class KhachHangAdapter extends RecyclerView.Adapter<KhachHangAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KhachHangAdapter.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull KhachHangAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int i) {
         String[] makh = {list.get(holder.getAdapterPosition()).getMaKH()};
-        holder.tenkh.setText(list.get(i).getHoVaTen());
-        holder.sdtkh.setText(list.get(i).getSDTKH());
-        holder.userkh.setText(list.get(i).getTenDN());
-        holder.passkh.setText(list.get(i).getMatKhau());
+        holder.tenkh.setText("Tên KH : "+list.get(i).getHoVaTen());
+        holder.sdtkh.setText("SDT : "+list.get(i).getSDTKH());
+        holder.userkh.setText("User : "+list.get(i).getTenDN());
+        holder.passkh.setText("Pass : "+list.get(i).getMatKhau());
 
         holder.imgxoa.setOnClickListener(new View.OnClickListener() {
             @Override

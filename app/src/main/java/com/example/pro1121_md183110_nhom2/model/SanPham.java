@@ -8,6 +8,7 @@ public class SanPham {
     private int Gia;
     private String KhoiLuong,LuongCalo,ThanhPhan,MaLoai,TenLoai;
     private int SoLuong;
+    private String NSX;
 
     public HashMap<String, Object> convertHashMap(){
         HashMap<String, Object> SanPham = new HashMap<>();
@@ -19,7 +20,7 @@ public class SanPham {
         SanPham.put("ThanhPhan",ThanhPhan);
         SanPham.put("MaLoai",MaLoai);
         SanPham.put("TenLoai",TenLoai);
-        SanPham.put("SoLuong",SoLuong);
+        SanPham.put("NSX",NSX);
         return SanPham;
     }
 
@@ -35,7 +36,27 @@ public class SanPham {
         ThanhPhan = thanhPhan;
         MaLoai = maLoai;
 
+    }
 
+    public SanPham(String maSP, String tenSP, int gia, String khoiLuong, String luongCalo, String thanhPhan, String maLoai, String tenLoai, String NSX) {
+        MaSP = maSP;
+        TenSP = tenSP;
+        Gia = gia;
+        KhoiLuong = khoiLuong;
+        LuongCalo = luongCalo;
+        ThanhPhan = thanhPhan;
+        MaLoai = maLoai;
+        TenLoai = tenLoai;
+        this.NSX = NSX;
+    }
+
+
+    public String getNSX() {
+        return NSX;
+    }
+
+    public void setNSX(String NSX) {
+        this.NSX = NSX;
     }
 
     public String getMaSP() {
