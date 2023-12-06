@@ -13,25 +13,35 @@
         android:textColor="#EF1C1C"
         android:textSize="25sp"
         android:text="Xem chi tiết"/>
+
     <TextView
-        android:layout_marginTop="25dp"
+        android:id="@+id/tv_NSX_DSSP"
+android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text="Nhà sản xuất"/>
+        android:layout_marginTop="25dp"
+        android:text="Nhà sản xuất"
+        android:textSize="25sp" />
+
     <TextView
+        android:id="@+id/tv_Khoiluong_DSSP"
+        android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="Khối lượng"/>
     <TextView
+        android:id="@+id/tv_LuongCalo_DSSP"
+        android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="Lượng calo"/>
     <TextView
+        android:gravity="center"
+        android:id="@+id/tv_ThanhPhan_DSSP"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
