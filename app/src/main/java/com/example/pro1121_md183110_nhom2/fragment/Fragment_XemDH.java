@@ -59,14 +59,11 @@ public class Fragment_XemDH extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment__xem_d_h, container, false);
         rcv=view.findViewById(R.id.recycler_XemDH);
-        db=FirebaseFirestore.getInstance();
+
+        onResume();
 
 
 
-        adapter = new XDonHangAdapter(dhList,getContext(),db);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        rcv.setLayoutManager(linearLayoutManager);
-        rcv.setAdapter(adapter);
 
         ListenFirebaseFirestore();
 
@@ -93,4 +90,18 @@ public class Fragment_XemDH extends Fragment {
                 });
     }
 
+    public void reloadData(){
+        db=FirebaseFirestore.getInstance();
+        adapter = new XDonHangAdapter(dhList,getContext(),db);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rcv.setLayoutManager(linearLayoutManager);
+        rcv.setAdapter(adapter);
+
+    }
+    @Override
+    public void onResume() {
+        reloadData();
+        super.onResume();
+
+    }
 }
