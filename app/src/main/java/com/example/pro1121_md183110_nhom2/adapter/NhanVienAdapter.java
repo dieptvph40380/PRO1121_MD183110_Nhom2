@@ -78,6 +78,7 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 user = dialog.findViewById(R.id.edt_User_NV);
                 pass = dialog.findViewById(R.id.edt_Pass_NV);
                 btnsua=dialog.findViewById(R.id.btn_Sua_NV);
+                btnhuy=dialog.findViewById(R.id.btn_Huy_NV);
 
                 tennv.setText(list.get(position).getTenNV()+"");
                 sdt.setText(list.get(position).getSDT()+"");
@@ -115,6 +116,12 @@ public class NhanVienAdapter extends RecyclerView.Adapter<NhanVienAdapter.ViewHo
                 });
 
                 dialog.show();
+                btnhuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
         holder.imgxoa.setOnClickListener(new View.OnClickListener() {

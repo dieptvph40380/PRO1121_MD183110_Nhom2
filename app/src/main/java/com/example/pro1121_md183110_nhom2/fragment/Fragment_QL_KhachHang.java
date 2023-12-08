@@ -1,5 +1,7 @@
 package com.example.pro1121_md183110_nhom2.fragment;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -125,15 +127,20 @@ public class Fragment_QL_KhachHang extends Fragment {
     });
     }
     public void openDialog(final Context context, final int type){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View view = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.dialog_them_khachhang, null);
+        builder.setView(view);
+        Dialog dialog1 = builder.create();
+        dialog1.show();
         dialog_KH = new Dialog(getContext());
         dialog_KH.setContentView(R.layout.dialog_them_khachhang);
 
-        tenkh = dialog_KH.findViewById(R.id.edt_TenKH);
-        sdtkh = dialog_KH.findViewById(R.id.edt_SDT_KH);
-        userkh = dialog_KH.findViewById(R.id.edt_User_KH);
-        passkh = dialog_KH.findViewById(R.id.edt_Pass_KH);
-        btnthem = dialog_KH.findViewById(R.id.btn_Them_KH);
-        btnhuy = dialog_KH.findViewById(R.id.btn_HuyT_KH);
+        tenkh = dialog1.findViewById(R.id.edt_TenKH);
+        sdtkh = dialog1.findViewById(R.id.edt_SDT_KH);
+        userkh = dialog1.findViewById(R.id.edt_User_KH);
+        passkh = dialog1.findViewById(R.id.edt_Pass_KH);
+        btnthem = dialog1.findViewById(R.id.btn_Them_KH);
+        btnhuy = dialog1.findViewById(R.id.btn_HuyT_KH);
         btnthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,30 +154,33 @@ public class Fragment_QL_KhachHang extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                     if (task.getResult().isEmpty()) {
-                                        String TenKH=tenkh.getText().toString();
-                                        String SDTKH=sdtkh.getText().toString();
-                                        String TenDN=userkh.getText().toString();
-                                        String MatKhau=passkh.getText().toString();
-                                        String MaKH= UUID.randomUUID().toString();
+                                        if(validate()==1) {
+                                            String TenKH = tenkh.getText().toString();
+                                            String SDTKH = sdtkh.getText().toString();
+                                            String TenDN = userkh.getText().toString();
+                                            String MatKhau = passkh.getText().toString();
+                                            String MaKH = UUID.randomUUID().toString();
 
-                                        KhachHang kh = new KhachHang(MaKH,SDTKH,TenKH,TenDN,MatKhau);
-                                        HashMap<String, Object> mapKH= kh.convertHashMap();
-                                        db_KH.collection("KhachHang")
-                                                .document(MaKH)
-                                                .set(mapKH)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
-                                                        dialog_KH.dismiss();
-                                                    }
-                                                });
+                                            KhachHang kh = new KhachHang(MaKH, SDTKH, TenKH, TenDN, MatKhau);
+                                            HashMap<String, Object> mapKH = kh.convertHashMap();
+                                            db_KH.collection("KhachHang")
+                                                    .document(MaKH)
+                                                    .set(mapKH)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                            dialog1.dismiss();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+
+                                                        }
+                                                    });
+                                        }
                                     } else {
                                         // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
                                         Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
@@ -184,7 +194,29 @@ public class Fragment_QL_KhachHang extends Fragment {
 
             }
         });
-        dialog_KH.show();
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog1.dismiss();
+            }
+        });
+
     }
+
+    public int validate(){
+        int validate;
+        if(tenkh.getText().length()==0||sdtkh.getText().length()==0||userkh.getText().length()==0||passkh.getText().length()==0) {
+            Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate = 0;
+        } else if (sdtkh.getText().length()>10||sdtkh.getText().length()<10) {
+            Toast.makeText(getContext(), "Số điện thoại chỉ 10 kí tự  ", Toast.LENGTH_SHORT).show();
+            validate = 2;
+        } else  {
+            validate =1;
+
+        }
+        return validate;
+    }
+
 
 }

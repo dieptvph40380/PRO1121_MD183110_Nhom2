@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.pro1121_md183110_nhom2.R;
@@ -53,7 +55,8 @@ public class Fragment_XemSP extends Fragment {
     DSSPAdapter adapter;
 
     Context context;
-    Button btnthem,btnthemct;
+    Button btnthem,btnload;
+    FrameLayout frameLayout;
 
     public Fragment_XemSP() {
         // Required empty public constructor
@@ -70,13 +73,23 @@ public class Fragment_XemSP extends Fragment {
 
         rcv=view.findViewById(R.id.recycler_XemSP);
         db=FirebaseFirestore.getInstance();
-
+        btnload=view.findViewById(R.id.btn_load);
+//        frameLayout= view.findViewById(R.id.framelayout);
         adapter = new DSSPAdapter(spList,getContext(),db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
         ListenFirebaseFirestore();
         //ListenFirebaseFirestoregh();
+
+
+        btnload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager=getActivity().getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.framelayout,new Fragment_load()).commit();
+            }
+        });
 
         return view;
     }
@@ -134,7 +147,7 @@ public class Fragment_XemSP extends Fragment {
 
         soluong = dialog.findViewById(R.id.edt_SL_TGH);
         size = dialog.findViewById(R.id.edt_Size_TGH);
-        thanhtien= dialog.findViewById(R.id.edt_ThanhTien_TGH);
+
         btnthem = dialog.findViewById(R.id.btn_Them_GH);
       //  btnhuy = dialog.findViewById(R.id.btn_HuyT_LSP);
 

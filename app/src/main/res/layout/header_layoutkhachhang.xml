@@ -7,9 +7,10 @@
     android:gravity="center">
 
     <ImageView
+        android:src="@drawable/person_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-       />
+        />
 
     <TextView
         android:gravity="center"
@@ -19,6 +20,6 @@
         android:layout_gravity="center"
         android:textSize="25sp"
         android:layout_marginBottom="10sp"
-        android:text="Welcome administrator" />
+        android:text="Welcome customers" />
 
 </LinearLayout>

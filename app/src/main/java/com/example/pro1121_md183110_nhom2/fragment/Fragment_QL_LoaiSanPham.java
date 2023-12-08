@@ -153,32 +153,35 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                     if (task.getResult().isEmpty()) {
-                                        String Tenlsp=tenlsp.getText().toString();
-                                        String NSX=nsx.getText().toString();
+                                        if(validate()==1) {
+                                            String Tenlsp = tenlsp.getText().toString();
+                                            String NSX = nsx.getText().toString();
 
-                                        String MaLSP= UUID.randomUUID().toString();
+                                            String MaLSP = UUID.randomUUID().toString();
 
-                                        LoaiSanPham lsp = new LoaiSanPham(MaLSP,Tenlsp,NSX);
-                                        HashMap<String, Object> MapLSP = lsp.convertHashMap();
-                                        db.collection("LoaiSanPham")
-                                                .document(MaLSP)
-                                                .set(MapLSP)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
-                                                        dialog.dismiss();
-                                                    }
-                                                });
+                                            LoaiSanPham lsp = new LoaiSanPham(MaLSP, Tenlsp, NSX);
+                                            HashMap<String, Object> MapLSP = lsp.convertHashMap();
+                                            db.collection("LoaiSanPham")
+                                                    .document(MaLSP)
+                                                    .set(MapLSP)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                            dialog.dismiss();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+
+                                                        }
+                                                    });
+                                        }
                                     } else {
                                         // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
-                                        Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Đã có tên loại này , vui lòng nhập tên loại khác", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
                                     // Xử lý khi truy vấn không thành công
@@ -190,5 +193,23 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
             }
         });
         dialog.show();
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public int validate(){
+        int validate;
+        if(tenlsp.getText().length()==0||nsx.getText().length()==0){
+            Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate=0;
+        }else {
+            validate =1;
+
+        }
+        return validate;
     }
 }

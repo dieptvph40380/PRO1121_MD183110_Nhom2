@@ -3,6 +3,7 @@ package com.example.pro1121_md183110_nhom2.fragment;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pro1121_md183110_nhom2.DangNhap;
+import com.example.pro1121_md183110_nhom2.DangNhap_KhachHang;
 import com.example.pro1121_md183110_nhom2.R;
 import com.example.pro1121_md183110_nhom2.model.KhachHang;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,7 +53,7 @@ public class Fragment_DoiMK_KH extends Fragment {
 
         db=FirebaseFirestore.getInstance();
 
-        SharedPreferences sharedPreferencesa= getActivity().getSharedPreferences("USER_FILE_KH",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferencesa= getActivity().getSharedPreferences("TTKH",Context.MODE_PRIVATE);
         String MaKH= sharedPreferencesa.getString("USERNAME_KH","");
 
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
@@ -62,22 +65,26 @@ public class Fragment_DoiMK_KH extends Fragment {
                     if(task.isSuccessful()){
                         for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
                             KhachHang khachHang= documentSnapshot.toObject(KhachHang.class);
-                            if(khachHang.getMatKhau().equals(edtMKC.getText().toString())){
+                            if(checkMK()==1) {
+                                if (khachHang.getMatKhau().equals(edtMKC.getText().toString())) {
 
-                                collectionReference.document(documentSnapshot.getId()).update("MatKhau",edtMKM.getText().toString())
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                Toast.makeText(getContext(), "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(getContext(), "Đổi mật khẩu không thành công", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }else {
-                                Toast.makeText(getContext(), "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                    collectionReference.document(documentSnapshot.getId()).update("MatKhau", edtMKM.getText().toString())
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    Toast.makeText(getContext(), "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                                                    Intent i = new Intent(getContext(), DangNhap_KhachHang.class);
+                                                    startActivity(i);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getContext(), "Đổi mật khẩu không thành công", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                } else {
+                                    Toast.makeText(getContext(), "Sai mật khẩu", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     }else {
@@ -89,5 +96,15 @@ public class Fragment_DoiMK_KH extends Fragment {
         });
 
         return v;
+    }
+    public int checkMK(){
+        int check;
+        if(edtReMKM.getText().toString().equals(edtMKM.getText().toString())){
+            check=1;
+        } else {
+            check =0;
+            Toast.makeText(getContext(), "Mật khẩu không trùng khớp  ", Toast.LENGTH_SHORT).show();
+        }
+        return check;
     }
 }

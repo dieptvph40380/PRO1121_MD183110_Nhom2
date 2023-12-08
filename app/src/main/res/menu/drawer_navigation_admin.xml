@@ -19,17 +19,7 @@
         android:title="Quản lý hóa đơn "
         />
 
-    <item android:title="Thống kê">
-        <menu>
-            <item android:id="@+id/Top10_AD"
-                android:title="Top 10 sản phẩm bán nhiều nhất"
-                />
 
-            <item android:id="@+id/DoanhThu_AD"
-                android:title="Doanh thu"
-                />
-        </menu>
-    </item>
     <item android:title="Tài khoản">
         <menu>
             <item android:id="@+id/DoiMk_AD"

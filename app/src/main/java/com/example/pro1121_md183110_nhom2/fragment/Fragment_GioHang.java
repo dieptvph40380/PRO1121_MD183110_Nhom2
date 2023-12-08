@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,11 +23,15 @@ import com.example.pro1121_md183110_nhom2.adapter.DSSPAdapter;
 import com.example.pro1121_md183110_nhom2.adapter.giohangAdapter;
 import com.example.pro1121_md183110_nhom2.model.GioHang;
 import com.example.pro1121_md183110_nhom2.model.SanPham;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -44,7 +50,7 @@ public class Fragment_GioHang extends Fragment {
     giohangAdapter adapter;
 
     Context context;
-    Button btnthem, btnthemct;
+    Button btndathang;
 
 
     public Fragment_GioHang() {
@@ -60,14 +66,17 @@ public class Fragment_GioHang extends Fragment {
         View view = inflater.inflate(R.layout.fragment__gh, container, false);
 
 
+
         rcv = view.findViewById(R.id.recyclerViewCart);
         db = FirebaseFirestore.getInstance();
+
+        ListenFirebaseFirestore();
 
         adapter = new giohangAdapter(ghList, getContext(), db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
-        ListenFirebaseFirestore();
+
 
 //        .setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -80,57 +89,25 @@ public class Fragment_GioHang extends Fragment {
     }
 
     private void ListenFirebaseFirestore() {
-        db.collection("GioHang").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.e("zzzzz", "fail", error);
-                    return;
-                }
-                if (value != null) {
-                    for (DocumentChange dc : value.getDocumentChanges()) {
-                        GioHang gioHang = dc.getDocument().toObject(GioHang.class);
-                        SharedPreferences sp = context.getSharedPreferences("TTKH", context.MODE_PRIVATE);
-                        String userRemember = sp.getString("USERNAME_KH", "");
-                        // Kiểm tra điều kiện
-                        if (userRemember.equals(gioHang.getMaKH())) {
-                            switch (dc.getType()) {
-                                case ADDED:
-                                    ghList.add(gioHang);
-                                    adapter.notifyItemInserted(ghList.size() - 1);
-                                    break;
-                                case MODIFIED:
-                                    if (dc.getOldIndex() == dc.getNewIndex()) {
-                                        ghList.set(dc.getOldIndex(), gioHang);
-                                        adapter.notifyItemChanged(dc.getOldIndex());
-                                    } else {
-                                        ghList.remove(dc.getOldIndex());
-                                        ghList.add(gioHang);
-                                        adapter.notifyItemMoved(dc.getOldIndex(), dc.getNewIndex());
-                                    }
-                                    break;
-                                case REMOVED:
-                                    ghList.remove(dc.getOldIndex());
-                                    adapter.notifyItemRemoved(dc.getOldIndex());
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+        SharedPreferences pref=getContext().getSharedPreferences("TTKH",Context.MODE_PRIVATE);
+        String usekh = pref.getString("USERNAME_KH","");
+        db.collection("GioHang")
+               .whereEqualTo("MaKH",usekh)
+               .get()
+               .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                       if(task.isSuccessful()){
+                           for(QueryDocumentSnapshot x:task.getResult()){
+                               ghList.add(x.toObject(GioHang.class));
+                               adapter.notifyDataSetChanged();
+                           }
+                       }
+                   }
+               });
     }
 }
 
-  //  private void ListenFirebaseFirestoregh(){
-        //        db.collection("GioHang")
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        if(error != null){
-//                            Log.e("TAG", "fail", error);
-//                            return;
-//                        }
-//        db.collection("GioHnag")
+
 
 

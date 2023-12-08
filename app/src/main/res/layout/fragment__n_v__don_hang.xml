@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Fragment_QL_DonHang">
+    tools:context=".fragment.Fragment_NV_DonHang">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_QLDH"
+        android:id="@+id/recycler_NVQLDH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 </RelativeLayout>

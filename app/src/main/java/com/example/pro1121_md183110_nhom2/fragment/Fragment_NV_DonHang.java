@@ -14,13 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.pro1121_md183110_nhom2.R;
-import com.example.pro1121_md183110_nhom2.adapter.LoaiSanPhamAdapter;
+import com.example.pro1121_md183110_nhom2.adapter.NVDonHangAdapter;
 import com.example.pro1121_md183110_nhom2.adapter.QLDonHangAdapter;
 import com.example.pro1121_md183110_nhom2.model.DonHang;
-import com.example.pro1121_md183110_nhom2.model.LoaiSanPham;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -31,34 +29,31 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 
-public class Fragment_QL_DonHang extends Fragment {
+public class Fragment_NV_DonHang extends Fragment {
     FirebaseFirestore db;
     RecyclerView rcv;
     FloatingActionButton fab;
     Dialog dialog;
 
     ArrayList<DonHang> dhList = new ArrayList<>();
-    QLDonHangAdapter adapter;
+    NVDonHangAdapter adapter;
     Context context;
     Button btnthem,btnhuy;
 
-    public Fragment_QL_DonHang() {
+    public Fragment_NV_DonHang() {
         // Required empty public constructor
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment__q_l__don_hang, container, false);
-
-
-        rcv=view.findViewById(R.id.recycler_QLDH);
+        View view= inflater.inflate(R.layout.fragment__n_v__don_hang, container, false);
+        rcv=view.findViewById(R.id.recycler_NVQLDH);
         db=FirebaseFirestore.getInstance();
 
-        adapter = new QLDonHangAdapter(dhList,getContext(),db);
+        adapter = new NVDonHangAdapter(dhList,getContext(),db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);

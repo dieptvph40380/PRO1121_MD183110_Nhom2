@@ -52,6 +52,7 @@ public class DangKy_KhachHang extends AppCompatActivity {
                                 // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                 if (task.getResult().isEmpty()) {
                                     if(validate()==1) {
+                                        if (CheckMK() == 1) {
                                         String tenDNKH = edtDN_KH.getText().toString();
                                         String SDTKH = edtSDT_KH.getText().toString();
                                         String HoTenKH = edtUserName_KH.getText().toString();
@@ -65,12 +66,12 @@ public class DangKy_KhachHang extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Void avoid) {
 
-                                                        if (CheckMK() == 1) {
+
                                                             Toast.makeText(DangKy_KhachHang.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                                             Intent intent = new Intent(DangKy_KhachHang.this, DangNhap_KhachHang.class);
                                                             startActivity(intent);
 
-                                                        }
+
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
@@ -79,6 +80,7 @@ public class DangKy_KhachHang extends AppCompatActivity {
                                                         Toast.makeText(DangKy_KhachHang.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
+                                        }
                                     }
                                 } else {
                                     // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp

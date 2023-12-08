@@ -51,33 +51,35 @@ public class DangKy extends AppCompatActivity {
                                         // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                         if (task.getResult().isEmpty()) {
                                             if(validate()==1) {
-                                                String tenDN = edtDN.getText().toString();
-                                                String HoTen = edtHT.getText().toString();
-                                                String MK = edtMK.getText().toString();
+                                                if (checkMK() == 1) {
+                                                    String tenDN = edtDN.getText().toString();
+                                                    String HoTen = edtHT.getText().toString();
+                                                    String MK = edtMK.getText().toString();
 
 //                                            String ID=UUID.randomUUID().toString();
-                                                Admin admin = new Admin(tenDN, HoTen, MK);
-                                                HashMap<String, Object> mapAdmin = admin.convertHashMap();
-                                                database.collection("Admin")
-                                                        .document(tenDN)
-                                                        .set(mapAdmin)
-                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                            @Override
-                                                            public void onSuccess(Void aVoid) {
-                                                                if (checkMK() == 1) {
+                                                    Admin admin = new Admin(tenDN, HoTen, MK);
+                                                    HashMap<String, Object> mapAdmin = admin.convertHashMap();
+                                                    database.collection("Admin")
+                                                            .document(tenDN)
+                                                            .set(mapAdmin)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+
                                                                     Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                                                     Intent intent = new Intent(DangKy.this, DangNhap.class);
                                                                     startActivity(intent);
-                                                                }
 
-                                                            }
-                                                        })
-                                                        .addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-                                                                Toast.makeText(DangKy.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        });
+
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Toast.makeText(DangKy.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                }
                                             }
                                         } else {
                                             // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp

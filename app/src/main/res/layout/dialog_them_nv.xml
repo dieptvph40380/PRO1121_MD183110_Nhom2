@@ -23,6 +23,7 @@
         android:id="@+id/edt_SDT_NV"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
+        android:inputType="number"
         android:layout_height="wrap_content"
         android:hint="Nhập số điện thoại"/>
     <EditText

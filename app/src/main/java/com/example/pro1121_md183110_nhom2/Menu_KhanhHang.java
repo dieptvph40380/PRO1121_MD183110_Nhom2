@@ -17,8 +17,10 @@ import android.widget.Toast;
 
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoiMK_AD;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoiMK_KH;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_GioHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_DonHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_Top_MuaSanPham_;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_XemDH;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_XemGH;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_XemSP;
 import com.google.android.material.navigation.NavigationView;
@@ -48,7 +50,7 @@ public class Menu_KhanhHang extends AppCompatActivity {
                     fragment = new Fragment_XemSP();
                     Toast.makeText(getApplicationContext(),"Xem Danh Sách Sản Phẩm",Toast.LENGTH_SHORT).show();
                 } else if (item.getItemId() == R.id.Xem_GioHang) {
-                    fragment = new Fragment_XemGH();
+                    fragment = new Fragment_GioHang();
                     Toast.makeText(getApplicationContext(),"Xem Giỏ Hàng",Toast.LENGTH_SHORT).show();
                 } else if (item.getItemId() == R.id.LogOut_KH) {
                     Intent intent = new Intent(Menu_KhanhHang.this, DangNhap_KhachHang.class);
@@ -58,11 +60,8 @@ public class Menu_KhanhHang extends AppCompatActivity {
                     fragment = new Fragment_DoiMK_KH();
                     Toast.makeText(getApplicationContext(),"Đổi Mật Khẩu",Toast.LENGTH_SHORT).show();
                 }else if (item.getItemId() == R.id.Xem_DonHang) {
-                    fragment = new Fragment_QL_DonHang();
+                    fragment = new Fragment_XemDH();
                     Toast.makeText(getApplicationContext(),"Xem Đơn Hàng",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId()==R.id.Top10_KH) {
-                    fragment = new Fragment_Top_MuaSanPham_();
-                    Toast.makeText(getApplicationContext(),"Top sản phẩm hot",Toast.LENGTH_SHORT).show();
                 }
 
                 if (fragment != null){

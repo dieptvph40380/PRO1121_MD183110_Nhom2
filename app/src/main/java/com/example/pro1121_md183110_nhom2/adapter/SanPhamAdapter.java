@@ -205,7 +205,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         khoiluong=dialog.findViewById(R.id.edt_Klg_SP);
         luongcalo=dialog.findViewById(R.id.edt_LgCalo_SP);
         thanhphan=dialog.findViewById(R.id.edt_TP_SP);
-        btnhuy=dialog.findViewById(R.id.btn_HuyT_SP);
+        btnhuy=dialog.findViewById(R.id.btn_Huy_SP);
         btnsua=dialog.findViewById(R.id.btn_Sua_SP);
         //     List<String> dataList = new ArrayList<>();
 

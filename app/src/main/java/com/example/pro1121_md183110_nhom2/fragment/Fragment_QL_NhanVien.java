@@ -158,31 +158,33 @@ public class Fragment_QL_NhanVien extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                     if (task.getResult().isEmpty()) {
-                                        String TenNV=tennv.getText().toString();
-                                        String SDT=sdt.getText().toString();
-                                        String User=user.getText().toString();
-                                        String Pass=pass.getText().toString();
-                                        String MaNV=UUID.randomUUID().toString();
+                                        if(validate()==1) {
+                                            String TenNV = tennv.getText().toString();
+                                            String SDT = sdt.getText().toString();
+                                            String User = user.getText().toString();
+                                            String Pass = pass.getText().toString();
+                                            String MaNV = UUID.randomUUID().toString();
 
-                                        NhanVien nv = new NhanVien(MaNV,TenNV,SDT,User,Pass);
-                                        HashMap<String, Object> mapNV = nv.convertHashMap();
-                                        db.collection("NhanVien")
-                                                .document(MaNV)
-                                                .set(mapNV)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
+                                            NhanVien nv = new NhanVien(MaNV, TenNV, SDT, User, Pass);
+                                            HashMap<String, Object> mapNV = nv.convertHashMap();
+                                            db.collection("NhanVien")
+                                                    .document(MaNV)
+                                                    .set(mapNV)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
                                                             Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
                                                             dialog.dismiss();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
 
-                                                    }
-                                                });
+                                                        }
+                                                    });
+                                        }
 
                                     } else {
 
@@ -200,6 +202,27 @@ public class Fragment_QL_NhanVien extends Fragment {
             }
         });
         dialog.show();
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public int validate(){
+        int validate;
+        if(tennv.getText().length()==0||sdt.getText().length()==0||user.getText().length()==0||pass.getText().length()==0) {
+            Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate = 0;
+        } else if (sdt.getText().length()>10||sdt.getText().length()<10) {
+            Toast.makeText(getContext(), "Số điện thoại chỉ 10 kí tự  ", Toast.LENGTH_SHORT).show();
+            validate = 2;
+        } else  {
+            validate =1;
+
+        }
+        return validate;
     }
 
 }

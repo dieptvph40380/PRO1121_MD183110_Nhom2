@@ -13,11 +13,30 @@
         android:textColor="#EF1C1C"
         android:textSize="25sp"
         android:text="Thêm giỏ hàng"/>
-    <EditText
-        android:id="@+id/edt_SL_TGH"
-        android:layout_marginTop="25dp"
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_TenSP_GH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#8a97dd"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tv_Gia_SP"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#8a97dd"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/edt_SL_TGH"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Nhập số lượng"/>
     <EditText
         android:id="@+id/edt_Size_TGH"
@@ -25,12 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nhập size"/>
-    <EditText
-        android:id="@+id/edt_ThanhTien_TGH"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Thanh tiền"/>
+
     <LinearLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
@@ -44,7 +58,7 @@
             android:textSize="20dp"
             android:text="Thêm"/>
         <Button
-            android:id="@+id/btn_HuyT_GH"
+            android:id="@+id/btn_Huy_GH"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

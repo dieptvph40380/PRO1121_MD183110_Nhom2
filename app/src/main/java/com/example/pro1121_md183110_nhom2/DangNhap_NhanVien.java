@@ -69,6 +69,10 @@ public class DangNhap_NhanVien extends AppCompatActivity {
                                     if (passwordFromDatabase != null && passwordFromDatabase.equals(MatKhau_NV)) {
                                         // Mật khẩu đúng
                                         Toast.makeText(DangNhap_NhanVien.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                        SharedPreferences pef =getSharedPreferences("TTNV",MODE_PRIVATE);
+                                        SharedPreferences.Editor edit= pef.edit();
+                                        edit.putString("USERNAME_NV",TenDN_NV);
+                                        edit.commit();
                                         rememberUser1(TenDN_NV, MatKhau_NV, chkLuuMK.isChecked());
                                         Intent i = new Intent(DangNhap_NhanVien.this, Menu_NhanVien.class);
                                         startActivity(i);

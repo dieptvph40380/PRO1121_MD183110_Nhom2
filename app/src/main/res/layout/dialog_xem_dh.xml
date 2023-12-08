@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentPadding="10dp"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xem chi tiết đơn hàng"
+            android:gravity="center"
+            android:textColor="#E91E63"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            />
+        <TextView
+
+            android:id="@+id/Xem_GiaDH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_margin="5dp"
+            android:text="Giá SP"
+            android:textColor="#8a97dd"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Xem_SoLuongDH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số Lượng"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:textColor="#8a97dd"
+            android:textSize="16dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/Xem_ThanhTienDH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thành Tiền"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:textColor="#8a97dd"
+            android:textSize="16dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/Xem_Size_DH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="Size "
+            android:textColor="#8a97dd"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

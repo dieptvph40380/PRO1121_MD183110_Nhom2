@@ -98,7 +98,7 @@
             android:textSize="20dp"
             android:text="Thêm"/>
         <Button
-            android:id="@+id/btn_HuyT_SP"
+            android:id="@+id/btn_Huy_SP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

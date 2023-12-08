@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_DoanhThu;
+import com.example.pro1121_md183110_nhom2.fragment.Fragment_NV_DonHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_DonHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_KhachHang;
 import com.example.pro1121_md183110_nhom2.fragment.Fragment_QL_LoaiSanPham;
@@ -59,7 +60,7 @@ public class Menu_NhanVien extends AppCompatActivity {
                     fragment_nv = new Fragment_QL_KhachHang();
                     Toast.makeText(getApplicationContext(),"Quản Lý Khách Hàng",Toast.LENGTH_SHORT).show();
                 }else if (item.getItemId() == R.id.QLHoaDon_NV) {
-                    fragment_nv = new Fragment_QL_DonHang();
+                    fragment_nv = new Fragment_NV_DonHang();
                     Toast.makeText(getApplicationContext(),"Quản Lý Đơn Hàng",Toast.LENGTH_SHORT).show();
                 }
 

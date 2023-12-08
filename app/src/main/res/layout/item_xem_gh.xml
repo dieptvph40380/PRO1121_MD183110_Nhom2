@@ -12,46 +12,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/type2"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-
             <TextView
-                android:id="@+id/Madh"
-                android:layout_width="wrap_content"
+                android:id="@+id/Ten_SP_GH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:textStyle="bold"
+                android:text="Tên sản phẩm"
                 android:textColor="#8a97dd"
                 android:textSize="16dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/openbook"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/MaSp"
-                android:layout_width="wrap_content"
+                android:id="@+id/Gia_SP_GH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:text="Giá sản phẩm : "
+                android:textColor="#8a97dd"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_TT_GH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thành tiền"
                 android:layout_margin="5dp"
@@ -60,23 +45,9 @@
                 android:textSize="16dp"
                 android:layout_gravity="center"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/newborn"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-
             <TextView
-                android:id="@+id/Gia"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_SL_GH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Số lượng"
                 android:layout_margin="5dp"
@@ -85,23 +56,9 @@
                 android:textSize="16dp"
                 android:layout_gravity="center"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/flashsale"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-
             <TextView
-                android:id="@+id/SLDH"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_Size_GH"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
@@ -110,7 +67,6 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,17 +76,22 @@
 
             <Button
                 android:id="@+id/btn_Sua_GH"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:layout_marginRight="5dp"
                 android:text="Sửa" />
             <Button
                 android:id="@+id/btn_DatHang_GH"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
+                android:textSize="10sp"
+                android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
                 android:text="Đặt hàng"/>
             <Button
                 android:id="@+id/btn_Xoa_GH"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
+                android:textSize="10sp"
                 android:layout_height="wrap_content"
                 android:text="Xóa"/>
 

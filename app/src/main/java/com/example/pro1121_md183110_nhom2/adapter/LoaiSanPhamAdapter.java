@@ -103,6 +103,12 @@ public class LoaiSanPhamAdapter extends RecyclerView.Adapter<LoaiSanPhamAdapter.
                 });
 
                 dialog.show();
+                btnhuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
         holder.imgxoa.setOnClickListener(new View.OnClickListener() {

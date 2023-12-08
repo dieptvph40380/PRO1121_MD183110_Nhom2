@@ -60,12 +60,6 @@ public class Menu_Admin extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.DoiMk_AD) {
                     fragment = new Fragment_DoiMK_AD();
                     Toast.makeText(getApplicationContext(),"Đổi Mật Khẩu",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.Top10_AD) {
-                    fragment = new Fragment_Top_BanSanPham();
-                    Toast.makeText(getApplicationContext(),"Top 10 sản phẩm bán nhiều nhất",Toast.LENGTH_SHORT).show();
-                } else if (item.getItemId() == R.id.DoanhThu_AD) {
-                    fragment = new Fragment_DoanhThu();
-                    Toast.makeText(getApplicationContext(),"Thống kê Doanh Thu",Toast.LENGTH_SHORT).show();
                 } else if (item.getItemId() == R.id.QLNhanVien_AD) {
                     fragment = new Fragment_QL_NhanVien();
                     Toast.makeText(getApplicationContext(),"Quản Lý Nhân Viên",Toast.LENGTH_SHORT).show();

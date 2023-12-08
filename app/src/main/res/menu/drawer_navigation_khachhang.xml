@@ -11,13 +11,7 @@
     <item android:id="@+id/Xem_DonHang"
         android:title="Xem đơn hàng "
         />
-    <item android:title="Thống kê">
-        <menu>
-            <item android:id="@+id/Top10_KH"
-                android:title="Top 10 sản phẩm được mua nhiều nhất"
-                />
-        </menu>
-    </item>
+
     <item android:title="Tài khoản">
         <menu>
             <item android:id="@+id/DoiMk_KH"

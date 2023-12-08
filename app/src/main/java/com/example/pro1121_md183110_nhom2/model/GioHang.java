@@ -8,7 +8,8 @@ public class GioHang {
     private int SoLuong;
     private String Size;
     private String MaKH;
-    private String MaSP;
+    private String TenSP;
+    private int GiaSP;
 
 
     public HashMap<String, Object> convertHashMap() {
@@ -18,20 +19,47 @@ public class GioHang {
         GioHang.put("ThanhTien", ThanhTien);
         GioHang.put("SoLuong", SoLuong);
         GioHang.put("Size", Size);
-        GioHang.put("MaSP", MaSP);
+        GioHang.put("TenSP", TenSP);
+        GioHang.put("GiaSP", GiaSP);
         return GioHang;
     }
 
     public GioHang() {
     }
 
-    public GioHang(String maGH, int thanhTien, int soLuong, String size, String maKH, String maSP) {
+    public GioHang(String maGH, int soLuong, String size, String maKH, String tenSP, int giaSP) {
+        MaGH = maGH;
+        SoLuong = soLuong;
+        Size = size;
+        MaKH = maKH;
+        TenSP = tenSP;
+        GiaSP = giaSP;
+    }
+
+    public GioHang(String maGH, int thanhTien, int soLuong, String size, String maKH, String tenSP, int giaSP) {
         MaGH = maGH;
         ThanhTien = thanhTien;
         SoLuong = soLuong;
         Size = size;
         MaKH = maKH;
-        MaSP = maSP;
+        TenSP = tenSP;
+        GiaSP = giaSP;
+    }
+
+    public String getTenSP() {
+        return TenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        TenSP = tenSP;
+    }
+
+    public int getGiaSP() {
+        return GiaSP;
+    }
+
+    public void setGiaSP(int giaSP) {
+        GiaSP = giaSP;
     }
 
     public String getMaGH() {
@@ -74,13 +102,7 @@ public class GioHang {
         MaKH = maKH;
     }
 
-    public String getMaSP() {
-        return MaSP;
-    }
 
-    public void setMaSP(String maSP) {
-        MaSP = maSP;
-    }
 }
 
 

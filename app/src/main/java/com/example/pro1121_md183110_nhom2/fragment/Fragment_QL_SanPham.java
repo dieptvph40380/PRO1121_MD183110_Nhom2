@@ -193,7 +193,7 @@ public class Fragment_QL_SanPham extends Fragment {
         thanhphan = view.findViewById(R.id.edt_TP_SP);
 
         btnthem = view.findViewById(R.id.btn_Them_SP);
-        btnhuy = view.findViewById(R.id.btn_HuyT_SP);
+        btnhuy = view.findViewById(R.id.btn_Huy_SP);
         btnimg = view.findViewById(R.id.btn_tanh_sp);
         imgthemanh=view.findViewById(R.id.img_them_sp);
 
@@ -234,6 +234,12 @@ public class Fragment_QL_SanPham extends Fragment {
 //                });
                 uploadImage();
 
+                dialog1.dismiss();
+            }
+        });
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog1.dismiss();
             }
         });
@@ -372,7 +378,6 @@ public class Fragment_QL_SanPham extends Fragment {
 //                                Toast.makeText(getContext(), ""+img_themnv, Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "onComplete: url download = " + downloadUri.toString() );
 
-
                                 String TenSP=tensp.getText().toString();
                                 db.collection("SanPham")
                                         .whereEqualTo("TenSP", TenSP)
@@ -383,35 +388,37 @@ public class Fragment_QL_SanPham extends Fragment {
                                                 if (task.isSuccessful()) {
                                                     // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                                     if (task.getResult().isEmpty()) {
-                                                        String MaSP = UUID.randomUUID().toString();
-                                                        String TenSP =tensp.getText().toString();
-                                                        int Gia = Integer.parseInt(giasp.getText().toString());
-                                                        String KhoiLuong =khoiluong.getText().toString();
-                                                        String LuongCalo =luongcalo.getText().toString();
-                                                        String ThanPhan =thanhphan.getText().toString();
-                                                        String MaLoai =loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP();
-                                                        String TenLoai =loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
-                                                        String NSX =loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
 
-                                                        SanPham sp = new SanPham(MaSP,TenSP,Gia,KhoiLuong,LuongCalo,ThanPhan,MaLoai,TenLoai,NSX,downloadUri.toString());
-                                                        HashMap<String, Object> mapSP = sp.convertHashMap();
+                                                            String MaSP = UUID.randomUUID().toString();
+                                                            String TenSP = tensp.getText().toString();
+                                                            int Gia = Integer.parseInt(giasp.getText().toString());
+                                                            String KhoiLuong = khoiluong.getText().toString();
+                                                            String LuongCalo = luongcalo.getText().toString();
+                                                            String ThanPhan = thanhphan.getText().toString();
+                                                            String MaLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP();
+                                                            String TenLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
+                                                            String NSX = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
 
-                                                        db.collection("SanPham")
-                                                                .document(MaSP)
-                                                                .set(mapSP)
-                                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                    @Override
-                                                                    public void onSuccess(Void aVoid) {
-                                                                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                })
-                                                                .addOnFailureListener(new OnFailureListener() {
-                                                                    @Override
-                                                                    public void onFailure(@NonNull Exception e) {
-                                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                                                            SanPham sp = new SanPham(MaSP, TenSP, Gia, KhoiLuong, LuongCalo, ThanPhan, MaLoai, TenLoai, NSX, downloadUri.toString());
+                                                            HashMap<String, Object> mapSP = sp.convertHashMap();
 
-                                                                    }
-                                                                });
+                                                            db.collection("SanPham")
+                                                                    .document(MaSP)
+                                                                    .set(mapSP)
+                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid) {
+                                                                            Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    })
+                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+
+                                                                        }
+                                                                    });
+
                                                     } else {
                                                         // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
                                                         Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
@@ -434,6 +441,21 @@ public class Fragment_QL_SanPham extends Fragment {
         }
 
     }
+    public int validate(){
+        int validate;
+        if(tensp.getText().length()==0||giasp.getText().length()==0||khoiluong.getText().length()==0||luongcalo.getText().length()==0||thanhphan.getText().length()==0) {
+            Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin  ", Toast.LENGTH_SHORT).show();
+            validate = 0;
+        } else if (giasp.getText().length()<0) {
+            Toast.makeText(getContext(), "giá phải là số dương ", Toast.LENGTH_SHORT).show();
+            validate = 2;
+        } else  {
+            validate =1;
+
+        }
+        return validate;
+    }
+
 
     public void showDialog(int position,Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -451,7 +473,7 @@ public class Fragment_QL_SanPham extends Fragment {
         khoiluong=view.findViewById(R.id.edt_Klg_SP);
         luongcalo=view.findViewById(R.id.edt_LgCalo_SP);
         thanhphan=view.findViewById(R.id.edt_TP_SP);
-//        btnhuy=view.findViewById(R.id.btn_HuyT_SP);
+        btnhuy=view.findViewById(R.id.btn_Huy_SP);
         btnsua=view.findViewById(R.id.btn_Sua_SP);
         btnsuaanh=view.findViewById(R.id.btn_sanh_sp);
         //     List<String> dataList = new ArrayList<>();
@@ -474,6 +496,12 @@ public class Fragment_QL_SanPham extends Fragment {
             public void onClick(View v) {
                 SelectImage();
                 Toast.makeText(getContext(), ""+tenloai, Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.dismiss();
             }
         });
 
