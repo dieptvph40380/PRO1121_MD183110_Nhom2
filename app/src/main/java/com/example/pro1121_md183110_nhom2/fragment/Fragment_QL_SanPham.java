@@ -107,7 +107,7 @@ public class Fragment_QL_SanPham extends Fragment {
         fab = view.findViewById(R.id.floatAdd_SP);
         rcv = view.findViewById(R.id.recycler_SP);
         db = FirebaseFirestore.getInstance();
-        ListenFirebaseFirestore();
+
 
         storage = FirebaseStorage.getInstance("gs://duan1-82699.appspot.com");
         storageReference = storage.getReference();
@@ -118,6 +118,8 @@ public class Fragment_QL_SanPham extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
+
+        ListenFirebaseFirestore();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,9 +234,9 @@ public class Fragment_QL_SanPham extends Fragment {
 //                        }
 //                    }
 //                });
-                uploadImage();
+                uploadImage(dialog1);
 
-                dialog1.dismiss();
+
             }
         });
         btnhuy.setOnClickListener(new View.OnClickListener() {
@@ -312,8 +314,9 @@ public class Fragment_QL_SanPham extends Fragment {
 
 
 
-    private void uploadImage( ) {
+    private void uploadImage(Dialog dialog1 ) {
 
+    if(validate()==1) {
         if (filePath != null) {
 
             // Hiển thị dialog
@@ -322,8 +325,7 @@ public class Fragment_QL_SanPham extends Fragment {
             progressDialog.show();
 
             // Tạo đường dẫn lưu trữ file, images/ là 1 thư mục trên firebase, chuỗi uuid... là tên file, tạm thời có thể phải lên web firebase tạo sẵn thư mục images
-            StorageReference ref = storageReference .child(  "images/" + UUID.randomUUID().toString());
-
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
 
 
             Log.d(TAG, "uploadImage: " + ref.getPath());
@@ -333,10 +335,10 @@ public class Fragment_QL_SanPham extends Fragment {
                     .addOnSuccessListener(
                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onSuccess( UploadTask.TaskSnapshot taskSnapshot) {
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                     // upload thành công, tắt dialog
                                     progressDialog.dismiss();
-                                    Toast.makeText(getContext(), "Image Uploaded!!", Toast.LENGTH_SHORT) .show();
+                                    Toast.makeText(getContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
 
                                 }
                             })
@@ -346,7 +348,7 @@ public class Fragment_QL_SanPham extends Fragment {
                         public void onFailure(@NonNull Exception e) {
                             e.printStackTrace(); // có lỗi upload
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), "Failed " + e.getMessage(),  Toast.LENGTH_SHORT) .show();
+                            Toast.makeText(getContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(
@@ -354,8 +356,8 @@ public class Fragment_QL_SanPham extends Fragment {
                                 @Override
                                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                                     // cập nhật tiến trình upload
-                                    double progress  = (100.0   * taskSnapshot.getBytesTransferred()  / taskSnapshot.getTotalByteCount());
-                                    progressDialog.setMessage( "Uploaded " + (int) progress + "%");
+                                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage("Uploaded " + (int) progress + "%");
                                 }
                             })
                     .continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -376,9 +378,9 @@ public class Fragment_QL_SanPham extends Fragment {
                                 // upload thành công, lấy được url ảnh, ghi ra log. Bạn có thể ghi vào CSdl....
 //                                img_themnv.setImageURI(downloadUri);
 //                                Toast.makeText(getContext(), ""+img_themnv, Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, "onComplete: url download = " + downloadUri.toString() );
+                                Log.d(TAG, "onComplete: url download = " + downloadUri.toString());
 
-                                String TenSP=tensp.getText().toString();
+                                String TenSP = tensp.getText().toString();
                                 db.collection("SanPham")
                                         .whereEqualTo("TenSP", TenSP)
                                         .get()
@@ -389,39 +391,40 @@ public class Fragment_QL_SanPham extends Fragment {
                                                     // Nếu không có bản ghi nào có tên đăng nhập giống như tên đăng nhập mới
                                                     if (task.getResult().isEmpty()) {
 
-                                                            String MaSP = UUID.randomUUID().toString();
-                                                            String TenSP = tensp.getText().toString();
-                                                            int Gia = Integer.parseInt(giasp.getText().toString());
-                                                            String KhoiLuong = khoiluong.getText().toString();
-                                                            String LuongCalo = luongcalo.getText().toString();
-                                                            String ThanPhan = thanhphan.getText().toString();
-                                                            String MaLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP();
-                                                            String TenLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
-                                                            String NSX = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
+                                                        String MaSP = UUID.randomUUID().toString();
+                                                        String TenSP = tensp.getText().toString();
+                                                        int Gia = Integer.parseInt(giasp.getText().toString());
+                                                        String KhoiLuong = khoiluong.getText().toString();
+                                                        String LuongCalo = luongcalo.getText().toString();
+                                                        String ThanPhan = thanhphan.getText().toString();
+                                                        String MaLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getMaLSP();
+                                                        String TenLoai = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getTenLSP();
+                                                        String NSX = loaiSanPhamList.get(spnloai.getSelectedItemPosition()).getNSXLSP();
 
-                                                            SanPham sp = new SanPham(MaSP, TenSP, Gia, KhoiLuong, LuongCalo, ThanPhan, MaLoai, TenLoai, NSX, downloadUri.toString());
-                                                            HashMap<String, Object> mapSP = sp.convertHashMap();
+                                                        SanPham sp = new SanPham(MaSP, TenSP, Gia, KhoiLuong, LuongCalo, ThanPhan, MaLoai, TenLoai, NSX, downloadUri.toString());
+                                                        HashMap<String, Object> mapSP = sp.convertHashMap();
 
-                                                            db.collection("SanPham")
-                                                                    .document(MaSP)
-                                                                    .set(mapSP)
-                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                        @Override
-                                                                        public void onSuccess(Void aVoid) {
-                                                                            Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                                                        }
-                                                                    })
-                                                                    .addOnFailureListener(new OnFailureListener() {
-                                                                        @Override
-                                                                        public void onFailure(@NonNull Exception e) {
-                                                                            Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                                                        db.collection("SanPham")
+                                                                .document(MaSP)
+                                                                .set(mapSP)
+                                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void aVoid) {
+                                                                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                                                                        dialog1.dismiss();
+                                                                    }
+                                                                })
+                                                                .addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
 
-                                                                        }
-                                                                    });
+                                                                    }
+                                                                });
 
                                                     } else {
                                                         // Tên đăng nhập đã tồn tại, xử lý thông báo hoặc hành động phù hợp
-                                                        Toast.makeText(getContext(), "Tên đăng nhập đã tồn tại, vui lòng chọn tên đăng nhập khác.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getContext(), "Tên sản phẩm đã tồn tại, vui lòng chọn tên sản phẩm khác.", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
                                                     // Xử lý khi truy vấn không thành công
@@ -438,7 +441,11 @@ public class Fragment_QL_SanPham extends Fragment {
                         }
                     });
 
+        }else {
+            Toast.makeText(getContext(), "Vui lòng chọn ảnh", Toast.LENGTH_SHORT).show();
         }
+        dialog1.show();
+    }
 
     }
     public int validate(){
@@ -656,6 +663,7 @@ public class Fragment_QL_SanPham extends Fragment {
 
 
     }
+
 
 }
 

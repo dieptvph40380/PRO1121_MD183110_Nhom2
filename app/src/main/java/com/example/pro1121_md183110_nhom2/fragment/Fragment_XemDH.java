@@ -22,6 +22,7 @@ import com.example.pro1121_md183110_nhom2.adapter.QLDonHangAdapter;
 import com.example.pro1121_md183110_nhom2.adapter.XDonHangAdapter;
 import com.example.pro1121_md183110_nhom2.model.DonHang;
 import com.example.pro1121_md183110_nhom2.model.GioHang;
+import com.example.pro1121_md183110_nhom2.model.NhanVien;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,10 +61,13 @@ public class Fragment_XemDH extends Fragment {
         rcv=view.findViewById(R.id.recycler_XemDH);
         db=FirebaseFirestore.getInstance();
 
+
+
         adapter = new XDonHangAdapter(dhList,getContext(),db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
+
         ListenFirebaseFirestore();
 
         return view;
@@ -88,4 +92,5 @@ public class Fragment_XemDH extends Fragment {
                     }
                 });
     }
+
 }

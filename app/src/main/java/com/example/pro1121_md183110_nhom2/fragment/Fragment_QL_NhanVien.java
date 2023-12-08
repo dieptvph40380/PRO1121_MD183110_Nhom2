@@ -71,12 +71,13 @@ public class Fragment_QL_NhanVien extends Fragment {
         fab=view.findViewById(R.id.floatAdd_NV);
         rcv=view.findViewById(R.id.recycler_NV);
         db=FirebaseFirestore.getInstance();
-        ListenFirebaseFirestore();
+
 
         adapter = new NhanVienAdapter(nvList,getContext(),db);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
+        ListenFirebaseFirestore();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

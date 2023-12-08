@@ -73,6 +73,7 @@ public class Fragment_QL_LoaiSanPham extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv.setLayoutManager(linearLayoutManager);
         rcv.setAdapter(adapter);
+
         ListenFirebaseFirestore();
 
         fab.setOnClickListener(new View.OnClickListener() {

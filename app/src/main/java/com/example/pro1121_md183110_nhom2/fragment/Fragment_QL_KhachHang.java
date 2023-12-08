@@ -69,12 +69,13 @@ public class Fragment_QL_KhachHang extends Fragment {
         fab_KH=view.findViewById(R.id.floatAdd_KH);
         rcv_KH=view.findViewById(R.id.recycler_KH);
         db_KH=FirebaseFirestore.getInstance();
-        ListenFirebaseFirestore();
+
 
         Adapter = new KhachHangAdapter(khList,getContext(),db_KH);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcv_KH.setLayoutManager(linearLayoutManager);
         rcv_KH.setAdapter(Adapter);
+        ListenFirebaseFirestore();
         fab_KH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
