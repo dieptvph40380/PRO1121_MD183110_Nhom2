@@ -93,7 +93,7 @@ public class XDonHangAdapter extends RecyclerView.Adapter<XDonHangAdapter.ViewHo
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Toast.makeText(context, "Hủy đơn hàng thành công", Toast.LENGTH_SHORT).show();
-
+                                    notifyDataSetChanged();
                                 }
                             });
 
